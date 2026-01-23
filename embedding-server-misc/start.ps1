@@ -57,12 +57,20 @@ $env:EMBEDDING_PORT = $Port
 $env:EMBEDDING_GPU_LAYERS = $GpuLayers
 $env:PYTHONUNBUFFERED = "1"
 
+# Get venv python executable
+$PythonExe = Join-Path $ScriptDir ".venv\Scripts\python.exe"
+if (-not (Test-Path $PythonExe)) {
+    Write-Status "ERROR: Python venv not found at $PythonExe" "Error"
+    Write-Status "Run: python -m venv .venv && .venv\Scripts\pip install -r requirements.txt" "Warning"
+    exit 1
+}
+
 try {
     Push-Location $ScriptDir
     
-    # Start embedding server with visible output
-    Write-Status "[CMD] python -m embedding_server" "Info"
-    & python -m embedding_server
+    # Start embedding server with visible output using venv python
+    Write-Status "[CMD] & `"$PythonExe`" -m embedding_server" "Info"
+    & $PythonExe -m embedding_server
     
     Pop-Location
 }

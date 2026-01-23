@@ -64,12 +64,20 @@ $env:MCP_CONFIG_FILE = $ConfigFile
 $env:MCP_SSE_PORT = $Port
 $env:PYTHONUNBUFFERED = "1"
 
+# Get venv python executable
+$PythonExe = Join-Path $ScriptDir ".venv\Scripts\python.exe"
+if (-not (Test-Path $PythonExe)) {
+    Write-Status "ERROR: Python venv not found at $PythonExe" "Error"
+    Write-Status "Run: python -m venv .venv && .venv\Scripts\pip install -r requirements.txt" "Warning"
+    exit 1
+}
+
 try {
     Push-Location $ScriptDir
     
-    # Start MCP server with visible output
-    Write-Status "[CMD] python -m mcp_server --config `"$ConfigFile`" --sse-port $Port" "Info"
-    & python -m mcp_server --config $ConfigFile --sse-port $Port
+    # Start MCP server with visible output using venv python
+    Write-Status "[CMD] & `"$PythonExe`" -m mcp_server --config `"$ConfigFile`" --sse-port $Port" "Info"
+    & $PythonExe -m mcp_server --config $ConfigFile --sse-port $Port
     
     Pop-Location
 }
