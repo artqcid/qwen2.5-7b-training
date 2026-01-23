@@ -1,0 +1,71 @@
+#!/usr/bin/env pwsh
+<#
+.SYNOPSIS
+    Start JUCE Embedding Server
+
+.DESCRIPTION
+    Launches the embedding server for JUCE development.
+    Server listens on http://127.0.0.1:8001
+
+.PARAMETER Port
+    Port for embedding server (default: 8001)
+
+.NOTES
+    Called by JUCE Server Autostart Extension
+#>
+
+param(
+    [int]$Port = 8001,
+    [int]$GpuLayers = 0
+)
+
+function Write-Status {
+    param(
+        [string]$Message,
+        [string]$Status = "Info"
+    )
+    
+    $colors = @{
+        "Success" = "Green"
+        "Error"   = "Red"
+        "Warning" = "Yellow"
+        "Info"    = "Cyan"
+    }
+    
+    $color = $colors[$Status]
+    Write-Host $Message -ForegroundColor $color
+}
+
+# Get script directory
+$ScriptDir = Split-Path -Parent $MyInvocation.MyCommandPath
+
+# Check if already running
+if (Test-Connection -ComputerName 127.0.0.1 -Port $Port -ErrorAction SilentlyContinue) {
+    Write-Status "[OK] Embedding server already running on port $Port" "Success"
+    exit 0
+}
+
+Write-Status "`n===== JUCE EMBEDDING SERVER =====" "Cyan"
+Write-Status "[START] Starting on port $Port..." "Info"
+Write-Status "GPU Layers: $GpuLayers" "Info"
+Write-Status "====================================`n" "Cyan"
+
+# Set environment
+$env:EMBEDDING_PORT = $Port
+$env:EMBEDDING_GPU_LAYERS = $GpuLayers
+$env:PYTHONUNBUFFERED = "1"
+
+try {
+    Push-Location $ScriptDir
+    
+    # Start embedding server with visible output
+    Write-Status "[CMD] python -m embedding_server" "Info"
+    & python -m embedding_server
+    
+    Pop-Location
+}
+catch {
+    Write-Status "ERROR: Failed to start embedding server: $_" "Error"
+    Pop-Location
+    exit 1
+}

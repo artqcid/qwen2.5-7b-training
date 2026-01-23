@@ -55,11 +55,17 @@ function Write-Status {
 # Get script directory
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommandPath
 $ProjectRoot = Split-Path -Parent $ScriptDir
-$MCPDir = Split-Path -Parent $ScriptDir
+$MCPDir = Join-Path $ProjectRoot "mcp-server-misc"
 
-# Resolve config file
+# Resolve config file - try mcp-server-misc first, then fallback to local
 if ([string]::IsNullOrEmpty($ConfigFile)) {
-    $ConfigFile = Join-Path $ScriptDir "mcp_config.json"
+    if (Test-Path $MCPDir) {
+        $ConfigFile = Join-Path $MCPDir "mcp_config.json"
+    } else {
+        # Fallback to project-local config
+        $ConfigFile = Join-Path $ScriptDir "mcp_config.json"
+        $MCPDir = $ProjectRoot
+    }
 }
 
 if (-not (Test-Path $ConfigFile)) {

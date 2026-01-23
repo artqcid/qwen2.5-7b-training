@@ -22,7 +22,9 @@
 			"editor.defaultFormatter": "ms-python.python"
 		},
 		"python.linting.enabled": true,
-		"python.linting.pylintEnabled": true
+		"python.linting.pylintEnabled": true,
+		"mcpAutoStarter.enabled": false,
+		"powershell.cwd": "qwen2.5-7b-training"
 	},
 	"launch": {
 		"version": "0.2.0",

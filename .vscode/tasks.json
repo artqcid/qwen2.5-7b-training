@@ -12,7 +12,7 @@
             "args": [
                 "-NoProfile",
                 "-Command",
-                "& '${workspaceFolder}/scripts/manage_servers.ps1' -Action 'start-all'; Start-Sleep -Seconds 3; & '${workspaceFolder}/scripts/start_mcp_server.ps1'"
+                "& '${workspaceFolder}/mcp-server-misc/start.ps1'; Start-Sleep -Seconds 3; & '${workspaceFolder}/embedding-server-misc/start.ps1'; Start-Sleep -Seconds 3; powershell -NoProfile -ExecutionPolicy Bypass -File 'C:\\Users\\marku\\.continue\\llama-vscode-autostart.ps1'"
             ],
             "isBackground": false,
             "presentation": {
@@ -33,7 +33,7 @@
             "args": [
                 "-NoProfile",
                 "-Command",
-                "& '${workspaceFolder}/scripts/manage_servers.ps1' -Action 'stop-all'"
+                "Get-Process llama-server -ErrorAction SilentlyContinue | Stop-Process -Force; Get-Process python -ErrorAction SilentlyContinue | Where-Object { $_.CommandLine -like '*embedding_server*' -or $_.CommandLine -like '*mcp_server*' } | Stop-Process -Force"
             ],
             "isBackground": false,
             "presentation": {
@@ -49,8 +49,10 @@
             "command": "pwsh",
             "args": [
                 "-NoProfile",
-                "-Command",
-                "& '${workspaceFolder}/scripts/manage_servers.ps1' -Action 'start-llama'"
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "C:\\Users\\marku\\.continue\\llama-vscode-autostart.ps1"
             ],
             "isBackground": true,
             "presentation": {
@@ -66,7 +68,7 @@
             "args": [
                 "-NoProfile",
                 "-Command",
-                "& '${workspaceFolder}/scripts/manage_servers.ps1' -Action 'stop-llama'"
+                "Get-Process llama-server -ErrorAction SilentlyContinue | Stop-Process -Force"
             ],
             "isBackground": false,
             "presentation": {
@@ -81,8 +83,10 @@
             "command": "pwsh",
             "args": [
                 "-NoProfile",
-                "-Command",
-                "& '${workspaceFolder}/scripts/manage_servers.ps1' -Action 'start-embedding'"
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "${workspaceFolder}/embedding-server-misc/start.ps1"
             ],
             "isBackground": true,
             "presentation": {
@@ -98,7 +102,7 @@
             "args": [
                 "-NoProfile",
                 "-Command",
-                "& '${workspaceFolder}/scripts/manage_servers.ps1' -Action 'stop-embedding'"
+                "Get-Process python -ErrorAction SilentlyContinue | Where-Object { $_.CommandLine -like '*embedding_server*' } | Stop-Process -Force"
             ],
             "isBackground": false,
             "presentation": {
@@ -113,8 +117,10 @@
             "command": "pwsh",
             "args": [
                 "-NoProfile",
-                "-Command",
-                "& '${workspaceFolder}/scripts/start_mcp_server.ps1'"
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "${workspaceFolder}/mcp-server-misc/start.ps1"
             ],
             "isBackground": true,
             "presentation": {
@@ -146,14 +152,15 @@
             "args": [
                 "-NoProfile",
                 "-Command",
-                "& '${workspaceFolder}/scripts/manage_servers.ps1' -Action 'status'"
+                "Write-Host 'LLAMA SERVER:' -ForegroundColor Cyan; Get-Process llama-server -ErrorAction SilentlyContinue | Select-Object ProcessName, Id, CPU, Memory; Write-Host 'EMBEDDING SERVER:' -ForegroundColor Cyan; Get-Process python -ErrorAction SilentlyContinue | Where-Object { $_.CommandLine -like '*embedding*' } | Select-Object ProcessName, Id, CPU, Memory; Write-Host 'MCP SERVER:' -ForegroundColor Cyan; Get-Process python -ErrorAction SilentlyContinue | Where-Object { $_.CommandLine -like '*mcp*' } | Select-Object ProcessName, Id, CPU, Memory"
             ],
             "isBackground": false,
             "presentation": {
                 "reveal": "always",
                 "panel": "shared",
                 "group": "servers"
-            }
+            },
+            "problemMatcher": []
         }
     ]
 }
