@@ -31,6 +31,27 @@ param(
     [string]$ConfigFile = $null
 )
 
+# Define Write-Status function for consistent output
+function Write-Status {
+    param(
+        [string]$Message,
+        [string]$Status = "Info"
+    )
+    
+    $colors = @{
+        "Success" = "Green"
+        "Error"   = "Red"
+        "Warning" = "Yellow"
+        "Info"    = "Cyan"
+        "Yellow"  = "Yellow"
+        "Cyan"    = "Cyan"
+        "Green"   = "Green"
+    }
+    
+    $color = $colors[$Status]
+    Write-Host $Message -ForegroundColor $color
+}
+
 # Get script directory
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommandPath
 $ProjectRoot = Split-Path -Parent $ScriptDir
@@ -42,26 +63,26 @@ if ([string]::IsNullOrEmpty($ConfigFile)) {
 }
 
 if (-not (Test-Path $ConfigFile)) {
-    Write-Host "ERROR: Config file not found: $ConfigFile" -ForegroundColor Red
+    Write-Status "ERROR: Config file not found: $ConfigFile" "Error"
     exit 1
 }
 
 # Check if already running
 $running = Get-Process -Name "python" -ErrorAction SilentlyContinue | Where-Object {
-    $_.CommandLine -like "*mcp_server*"
+    $_.CommandLine -match "mcp_server"
 }
 
 if ($running) {
-    Write-Host "MCP Server already running (PID: $($running.Id))" -ForegroundColor Yellow
+    Write-Status "`n[MCP SERVER] Starting..." "Info"
+    Write-Status "[OK] MCP Server already running (PID: $($running.Id))" "Success"
     exit 0
 }
 
-Write-Host "`n========== MCP Server (Standalone) ==========" -ForegroundColor Cyan
-Write-Host "Starting Web Context MCP Server" -ForegroundColor Green
-Write-Host "Config:    $ConfigFile" -ForegroundColor Cyan
-Write-Host "SSE Port:  $Port" -ForegroundColor Cyan
-Write-Host "Mode:      Standalone (IDE-agnostic)" -ForegroundColor Cyan
-Write-Host "========================================`n" -ForegroundColor Cyan
+Write-Status "`n========== STARTING MCP SERVER ==========" "Cyan"
+Write-Status "[MCP SERVER] Starting on port $Port..." "Info"
+Write-Status "Config:     $(Split-Path -Leaf $ConfigFile)" "Info"
+Write-Status "Mode:       Standalone (IDE-agnostic)" "Info"
+Write-Status "==========================================`n" "Cyan"
 
 # Set environment for MCP
 $env:MCP_CONFIG_FILE = $ConfigFile
@@ -78,18 +99,16 @@ try {
         "--sse-port", $Port
     ) -NoNewWindow -PassThru
     
-    Write-Host "[OK] MCP Server started (PID: $($process.Id))" -ForegroundColor Green
-    Write-Host "[OK] Listen on http://127.0.0.1:$Port/sse" -ForegroundColor Green
-    Write-Host "`nPress Ctrl+C to stop" -ForegroundColor Yellow
-    
-    # Wait for process
-    $process.WaitForExit()
+    if ($process) {
+        Write-Status "[OK] MCP server started (PID: $($process.Id))" "Success"
+        Write-Status "[OK] Listen on http://127.0.0.1:$Port/sse" "Success"
+    }
     
     Pop-Location
     exit 0
 }
 catch {
-    Write-Host "ERROR: Failed to start MCP server: $_" -ForegroundColor Red
+    Write-Status "ERROR: Failed to start MCP server: $_" "Error"
     Pop-Location
     exit 1
 }
