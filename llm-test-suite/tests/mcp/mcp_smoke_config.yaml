@@ -1,0 +1,52 @@
+# MCP Smoke Test Configuration
+
+# Auto-generates tests from web_context_sets.json
+# Each @context gets a basic prompt to verify LLM knows about it
+enabled: true
+
+# Override keywords per context (optional)
+keyword_overrides:
+  "@juce":
+    - "JUCE"
+    - "AudioProcessor"
+    - "prepareToPlay"
+  "@vue":
+    - "Vue"
+    - "Composition API"
+    - "reactive"
+  "@react":
+    - "React"
+    - "hooks"
+    - "useState"
+  "@js":
+    - "JavaScript"
+    - "ES6"
+    - "async"
+    - "await"
+  "@html":
+    - "HTML"
+    - "semantic"
+    - "elements"
+    - "tag"
+  "@plugin":
+    - "plugin"
+    - "VST"
+    - "CLAP"
+    - "AU"
+  "@clang":
+    - "Clang"
+    - "LLVM"
+    - "compiler"
+  "@vscode":
+    - "VS Code"
+    - "Visual Studio Code"
+    - "editor"
+    - "extension"
+  "@vst":
+    - "VST"
+    - "VST3"
+    - "plug-in"
+    - "audio"
+
+# Minimum keyword hits to pass
+min_keyword_hits: 1

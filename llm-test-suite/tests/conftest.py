@@ -55,18 +55,6 @@ def web_context_sets(config):
 
 
 @pytest.fixture(scope="session")
-def smoke_config(config):
-    """Get LLM smoke test configuration."""
-    return config.get("llm_smoke_tests", {})
-
-
-@pytest.fixture(scope="session")
-def embedding_smoke_config(config):
-    """Get embedding smoke test configuration."""
-    return config.get("embedding_smoke_tests", {})
-
-
-@pytest.fixture(scope="session")
 def embedding_client(config):
     """Create embedding client for entire test session."""
     endpoint = config["embedding"]["endpoint"]

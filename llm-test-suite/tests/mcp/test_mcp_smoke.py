@@ -66,15 +66,20 @@ def pytest_generate_tests(metafunc):
         import json
         from pathlib import Path
         
-        test_config_path = Path(__file__).parent.parent.parent / "test_config.yaml"
-        with open(test_config_path) as f:
+        # Load base config
+        base_config_path = Path(__file__).parent.parent.parent / "test_config.yaml"
+        with open(base_config_path) as f:
             test_config = yaml.safe_load(f)
         
-        context_file = test_config_path.parent / test_config["context_sets_file"]
+        # Load MCP-specific smoke config
+        mcp_config_path = Path(__file__).parent / "mcp_smoke_config.yaml"
+        with open(mcp_config_path) as f:
+            smoke_config = yaml.safe_load(f)
+        
+        # Get context file from base config
+        context_file = base_config_path.parent / test_config["context_sets_file"]
         with open(context_file) as f:
             web_context_sets = json.load(f)
-        
-        smoke_config = test_config.get("llm_smoke_tests", {})
         
         # Generate test parameters
         test_params = []

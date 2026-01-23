@@ -1,0 +1,24 @@
+# Embedding Smoke Test Configuration
+
+enabled: true
+
+# Similarity threshold for similar pairs
+similarity_threshold: 0.55
+
+# Distance threshold for different pairs
+distance_threshold: 0.35
+
+# Determinism threshold (same text multiple times)
+determinism_threshold: 0.999
+
+# Test pairs: similar texts
+similar_pairs:
+  - ["JUCE AudioProcessor class", "JUCE processBlock method"]
+  - ["React hooks introduction", "React useState and useEffect"]
+  - ["CSS grid layout tutorial", "CSS flexbox and grid systems"]
+
+# Test pairs: different texts
+different_pairs:
+  - ["JUCE audio processing", "Vue reactive data binding"]
+  - ["CMake build configuration", "JavaScript async await"]
+  - ["HTML semantic elements", "DSP signal processing"]
