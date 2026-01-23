@@ -147,7 +147,7 @@ function Start-LlamaServer {
     
     try {
         # Start server in background with full configuration
-        $process = Start-Process -FilePath $llamaPath -ArgumentList @(
+        $null = Start-Process -FilePath $llamaPath -ArgumentList @(
             "--model", $llamaConfig.modelPath,
             "--port", $llamaConfig.port,
             "--ctx-size", $llamaConfig.ctxSize,

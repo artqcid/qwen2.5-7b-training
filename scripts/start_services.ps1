@@ -25,7 +25,7 @@
 #>
 
 param(
-    [switch]$EmbeddingOnly = $true,
+    [switch]$EmbeddingOnly = $false,
     [switch]$InstallDeps
 )
 
