@@ -1,1 +1,15 @@
 python/dataset_juce8_complete_full/train.jsonl
+
+# Python caches
+__pycache__/
+*.pyc
+*.pyo
+
+# Pytest cache
+.pytest_cache/
+
+# Package metadata
+*.egg-info/
+
+# OS/editor noise
+.DS_Store
