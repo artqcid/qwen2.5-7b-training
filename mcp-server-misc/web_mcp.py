@@ -19,6 +19,7 @@ try:
     from mcp.server.stdio import stdio_server
     from mcp.types import (
         Resource,
+        ResourceTemplate,
         Tool,
         TextContent,
         ImageContent,
@@ -173,6 +174,12 @@ async def list_resources() -> List[Resource]:
             )
         )
     return resources
+
+
+@server.list_resource_templates()
+async def list_resource_templates() -> List[ResourceTemplate]:
+    """Server declares no resource templates; respond with empty list to satisfy MCP clients."""
+    return []
 
 
 @server.read_resource()

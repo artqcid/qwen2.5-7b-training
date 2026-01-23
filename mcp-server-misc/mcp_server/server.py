@@ -9,7 +9,7 @@ from pathlib import Path
 
 try:
     from mcp.server import Server
-    from mcp.types import Resource, Tool, TextContent
+    from mcp.types import Resource, ResourceTemplate, Prompt, PromptArgument, Tool, TextContent
 except ImportError:
     print("ERROR: mcp package not found. Install with: pip install mcp", file=sys.stderr)
     sys.exit(1)
@@ -55,6 +55,7 @@ class MCPServer:
         self.config = config or Config.from_env()
         self.server = Server("web-context")
         self.context_sets = self.config.load_context_sets()
+        self.prompts_data = self.config.load_prompts()
         self.resolver = ContextResolver(self.context_sets)
         self._setup_routes()
 
@@ -75,6 +76,37 @@ class MCPServer:
                     )
                 )
             return resources
+
+        @self.server.list_resource_templates()
+        async def list_resource_templates() -> List[ResourceTemplate]:
+            """List resource templates. Returns empty list - server uses fixed resources."""
+            return []
+
+        @self.server.list_prompts()
+        async def list_prompts() -> List[Prompt]:
+            """List available prompt templates loaded from prompts.json."""
+            prompts = []
+            for prompt_data in self.prompts_data.get("prompts", []):
+                # Convert arguments from JSON to PromptArgument objects
+                arguments = []
+                for arg in prompt_data.get("arguments", []):
+                    arguments.append(
+                        PromptArgument(
+                            name=arg["name"],
+                            description=arg.get("description", ""),
+                            required=arg.get("required", False)
+                        )
+                    )
+                
+                prompts.append(
+                    Prompt(
+                        name=prompt_data["name"],
+                        description=prompt_data.get("description", ""),
+                        arguments=arguments
+                    )
+                )
+            
+            return prompts
 
         @self.server.read_resource()
         async def read_resource(uri: str) -> str:

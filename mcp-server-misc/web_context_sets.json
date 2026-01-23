@@ -144,6 +144,16 @@
     ]
   },
 
+  "@audio": {
+    "urls": [
+      "@juce",
+      "@dsp",
+      "@vst",
+      "@clap",
+      "@plugin"
+    ]
+  },
+
   "@plugin": {
     "urls": [
       "@juce",
@@ -165,18 +175,20 @@
 
   "@all": {
     "urls": [
-      "@frontend",
-      "@plugin",
-      "@toolset",
-      "@dsp"
+      "@juce",
+      "@dsp",
+      "@vst",
+      "@cmake",
+      "@clang"
     ]
   },
 
   "@default": {
     "urls": [
       "@juce",
-      "@vst",
-      "@cmake"
+      "@dsp",
+      "@cmake",
+      "@vst"
     ]
   }
 }

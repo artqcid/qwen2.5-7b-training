@@ -4,7 +4,6 @@
         {
             "label": "Start All Servers",
             "dependsOn": [
-                "Start MCP Server",
                 "Start Embedding Server",
                 "Start Llama.cpp Server"
             ],
@@ -131,8 +130,10 @@
             "command": "pwsh",
             "args": [
                 "-NoProfile",
-                "-Command",
-                "Get-Process -Name 'python' -ErrorAction SilentlyContinue | Where-Object {$_.CommandLine -like '*mcp_server*'} | Stop-Process -Force"
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "${workspaceFolder}/mcp-server-misc/stop.ps1"
             ],
             "isBackground": false,
             "presentation": {
