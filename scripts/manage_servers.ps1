@@ -249,7 +249,6 @@ switch ($Action) {
         Start-Sleep -Seconds 2
         $embedding = Start-EmbeddingServer
         Write-Status "==========================================`n" "Cyan"
-        Write-Status "Note: MCP Server is standalone. Start with 'Start MCP Server' task if needed." "Info"
         exit $(if ($llama -and $embedding) { 0 } else { 1 })
     }
     "stop-all" {
@@ -257,7 +256,6 @@ switch ($Action) {
         $embedding = Stop-EmbeddingServer
         $llama = Stop-LlamaServer
         Write-Status "==========================================`n" "Yellow"
-        Write-Status "Note: Use 'Stop MCP Server' task to stop standalone MCP." "Info"
         exit $(if ($embedding -and $llama) { 0 } else { 1 })
     }
     "status" { 
