@@ -3,7 +3,7 @@ import asyncio
 import sys
 import argparse
 from pathlib import Path
-from .server import create_app
+from .server import MCPServer
 from .config import Config
 
 
@@ -81,7 +81,7 @@ def main():
         if args.config:
             config.config_file = Path(args.config)
         
-        app = create_app(config)
+        app = MCPServer(config)
 
         print(f"\n{'='*70}", file=sys.stderr)
         print(f"  MCP Server - Standalone Web Context Server", file=sys.stderr)

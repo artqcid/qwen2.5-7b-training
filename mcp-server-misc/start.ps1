@@ -75,7 +75,7 @@ if (-not (Test-Path $PythonExe)) {
 try {
     Push-Location $ScriptDir
     
-    # Start MCP server with visible output using venv python
+    # Start MCP server - direct invocation for clean stdio
     Write-Status "[CMD] & `"$PythonExe`" -m mcp_server --config `"$ConfigFile`" --sse-port $Port" "Info"
     & $PythonExe -m mcp_server --config $ConfigFile --sse-port $Port
     

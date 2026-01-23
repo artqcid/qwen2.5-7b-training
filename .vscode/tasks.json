@@ -3,22 +3,19 @@
     "tasks": [
         {
             "label": "Start All Servers",
+            "dependsOn": [
+                "Start MCP Server",
+                "Start Embedding Server",
+                "Start Llama.cpp Server"
+            ],
+            "dependsOrder": "parallel",
             "group": {
                 "kind": "build",
                 "isDefault": false
             },
-            "type": "shell",
-            "command": "pwsh",
-            "args": [
-                "-NoProfile",
-                "-Command",
-                "& '${workspaceFolder}/mcp-server-misc/start.ps1'; Start-Sleep -Seconds 3; & '${workspaceFolder}/embedding-server-misc/start.ps1'; Start-Sleep -Seconds 3; powershell -NoProfile -ExecutionPolicy Bypass -File 'C:\\Users\\marku\\.continue\\llama-vscode-autostart.ps1'"
-            ],
-            "isBackground": false,
             "presentation": {
                 "reveal": "always",
-                "panel": "shared",
-                "group": "servers"
+                "panel": "dedicated"
             },
             "problemMatcher": []
         },
@@ -32,8 +29,10 @@
             "command": "pwsh",
             "args": [
                 "-NoProfile",
-                "-Command",
-                "Get-Process llama-server -ErrorAction SilentlyContinue | Stop-Process -Force; Get-Process python -ErrorAction SilentlyContinue | Where-Object { $_.CommandLine -like '*embedding_server*' -or $_.CommandLine -like '*mcp_server*' } | Stop-Process -Force"
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "${workspaceFolder}/scripts/stop-all-servers.ps1"
             ],
             "isBackground": false,
             "presentation": {
@@ -57,8 +56,7 @@
             "isBackground": true,
             "presentation": {
                 "reveal": "always",
-                "panel": "shared",
-                "group": "servers"
+                "panel": "dedicated"
             }
         },
         {
@@ -91,8 +89,7 @@
             "isBackground": true,
             "presentation": {
                 "reveal": "always",
-                "panel": "shared",
-                "group": "servers"
+                "panel": "dedicated"
             }
         },
         {
@@ -125,8 +122,7 @@
             "isBackground": true,
             "presentation": {
                 "reveal": "always",
-                "panel": "shared",
-                "group": "servers"
+                "panel": "dedicated"
             }
         },
         {

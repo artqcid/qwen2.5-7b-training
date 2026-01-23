@@ -8,8 +8,8 @@ Can be configured for any set of URLs and integrated into multiple projects.
 __version__ = "1.0.0"
 __author__ = "artqcid"
 
-from .server import MCPServer, create_app
+from .server import MCPServer
 from .context import ContextResolver
 from .config import Config
 
-__all__ = ["MCPServer", "create_app", "ContextResolver", "Config"]
+__all__ = ["MCPServer", "ContextResolver", "Config"]
