@@ -160,16 +160,64 @@
             "problemMatcher": []
         },
         {
-            "label": "LLM: Pytest Smoke Tests",
+            "label": "LLM: MCP Smoke Tests",
             "type": "shell",
             "command": "python",
             "args": [
                 "-m",
                 "pytest",
-                "llm-test-suite/tests/test_smoke.py",
+                "llm-test-suite/tests/mcp/",
                 "-v",
                 "--color=yes",
                 "--tb=short"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "LLM: Embedding Smoke Tests",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-m",
+                "pytest",
+                "llm-test-suite/tests/embedding/",
+                "-v",
+                "--color=yes",
+                "--tb=short"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "LLM: ALL Smoke Tests",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-m",
+                "pytest",
+                "llm-test-suite/tests/",
+                "-v",
+                "--color=yes",
+                "--tb=short",
+                "-k",
+                "smoke"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"

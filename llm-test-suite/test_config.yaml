@@ -4,11 +4,16 @@ llm:
   n_predict: 200
   temperature: 0.7
 
+embedding:
+  endpoint: http://127.0.0.1:8001/v1/embeddings
+  timeout: 30
+  expected_dimension: 768  # Actual model dimension
+
 # Path to web_context_sets.json (relative to this file)
 context_sets_file: ../mcp-server-misc/web_context_sets.json
 
-# Smoke test settings
-smoke_tests:
+# LLM Smoke test settings
+llm_smoke_tests:
   # Auto-generates tests from web_context_sets.json
   # Each @context gets a basic prompt to verify LLM knows about it
   enabled: true
@@ -51,6 +56,36 @@ smoke_tests:
       - "Visual Studio Code"
       - "editor"
       - "extension"
+    "@vst":
+      - "VST"
+      - "VST3"
+      - "plug-in"
+      - "audio"
   
   # Minimum keyword hits to pass
   min_keyword_hits: 1
+
+# Embedding smoke test settings
+embedding_smoke_tests:
+  enabled: true
+  
+  # Similarity threshold for similar pairs
+  similarity_threshold: 0.55
+  
+  # Distance threshold for different pairs
+  distance_threshold: 0.35
+  
+  # Determinism threshold (same text multiple times)
+  determinism_threshold: 0.999
+  
+  # Test pairs: similar texts
+  similar_pairs:
+    - ["JUCE AudioProcessor class", "JUCE processBlock method"]
+    - ["React hooks introduction", "React useState and useEffect"]
+    - ["CSS grid layout tutorial", "CSS flexbox and grid systems"]
+  
+  # Test pairs: different texts
+  different_pairs:
+    - ["JUCE audio processing", "Vue reactive data binding"]
+    - ["CMake build configuration", "JavaScript async await"]
+    - ["HTML semantic elements", "DSP signal processing"]

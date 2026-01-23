@@ -9,6 +9,7 @@ import sys
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from llm_client import LLMClient
+from embedding_client import EmbeddingClient
 
 
 def pytest_configure(config):
@@ -55,5 +56,22 @@ def web_context_sets(config):
 
 @pytest.fixture(scope="session")
 def smoke_config(config):
-    """Get smoke test configuration."""
-    return config.get("smoke_tests", {})
+    """Get LLM smoke test configuration."""
+    return config.get("llm_smoke_tests", {})
+
+
+@pytest.fixture(scope="session")
+def embedding_smoke_config(config):
+    """Get embedding smoke test configuration."""
+    return config.get("embedding_smoke_tests", {})
+
+
+@pytest.fixture(scope="session")
+def embedding_client(config):
+    """Create embedding client for entire test session."""
+    endpoint = config["embedding"]["endpoint"]
+    timeout = config["embedding"]["timeout"]
+    
+    client = EmbeddingClient(endpoint, timeout)
+    yield client
+    client.close()

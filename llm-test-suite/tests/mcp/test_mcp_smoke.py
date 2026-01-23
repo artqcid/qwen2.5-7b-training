@@ -1,6 +1,6 @@
-"""Smoke tests - dynamically generated from web_context_sets.json.
+"""MCP smoke tests - dynamically generated from web_context_sets.json.
 
-These tests verify that the LLM has basic knowledge about each context.
+LLM smoke tests verify that the LLM has basic knowledge about each context.
 Tests are automatically generated for each @context in web_context_sets.json.
 """
 import pytest
@@ -66,7 +66,7 @@ def pytest_generate_tests(metafunc):
         import json
         from pathlib import Path
         
-        test_config_path = Path(__file__).parent.parent / "test_config.yaml"
+        test_config_path = Path(__file__).parent.parent.parent / "test_config.yaml"
         with open(test_config_path) as f:
             test_config = yaml.safe_load(f)
         
@@ -74,7 +74,7 @@ def pytest_generate_tests(metafunc):
         with open(context_file) as f:
             web_context_sets = json.load(f)
         
-        smoke_config = test_config.get("smoke_tests", {})
+        smoke_config = test_config.get("llm_smoke_tests", {})
         
         # Generate test parameters
         test_params = []
