@@ -33,7 +33,7 @@
             "args": [
                 "-NoProfile",
                 "-Command",
-                "& '${workspaceFolder}/scripts/manage_servers.ps1' -Action 'stop-all'; Get-Process -Name 'python' -ErrorAction SilentlyContinue | Where-Object {$_.CommandLine -like '*mcp_server*'} | Stop-Process -Force"
+                "& '${workspaceFolder}/scripts/manage_servers.ps1' -Action 'stop-all'; Get-Process -Name python -ErrorAction SilentlyContinue | Where-Object {$_.CommandLine -match 'mcp_server'} | Stop-Process -Force"
             ],
             "isBackground": false,
             "presentation": {
