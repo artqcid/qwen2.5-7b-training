@@ -29,11 +29,13 @@ function Write-Status {
     }
     
     $color = $colors[$Status]
+    if (-not $color) { $color = "White" }
     Write-Host $Message -ForegroundColor $color
 }
 
-# Get script directory
-$ScriptDir = Split-Path -Parent $MyInvocation.MyCommandPath
+# Get script directory (robust against null MyCommandPath)
+$ScriptDir = $PSScriptRoot
+if (-not $ScriptDir) { $ScriptDir = Split-Path -Parent $PSCommandPath }
 $ConfigFile = Join-Path $ScriptDir "mcp_config.json"
 
 # Verify config exists

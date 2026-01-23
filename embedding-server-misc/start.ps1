@@ -33,14 +33,16 @@ function Write-Status {
     }
     
     $color = $colors[$Status]
+    if (-not $color) { $color = "White" }
     Write-Host $Message -ForegroundColor $color
 }
 
-# Get script directory
-$ScriptDir = Split-Path -Parent $MyInvocation.MyCommandPath
+# Get script directory (robust against null MyCommandPath)
+$ScriptDir = $PSScriptRoot
+if (-not $ScriptDir) { $ScriptDir = Split-Path -Parent $PSCommandPath }
 
 # Check if already running
-if (Test-Connection -ComputerName 127.0.0.1 -Port $Port -ErrorAction SilentlyContinue) {
+if ((Test-NetConnection -ComputerName 127.0.0.1 -Port $Port -WarningAction SilentlyContinue -ErrorAction SilentlyContinue).TcpTestSucceeded) {
     Write-Status "[OK] Embedding server already running on port $Port" "Success"
     exit 0
 }
