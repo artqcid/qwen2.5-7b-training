@@ -255,8 +255,22 @@ switch ($Action) {
         Write-Status "`n========== STOPPING ALL SERVERS ==========" "Yellow"
         $embedding = Stop-EmbeddingServer
         $llama = Stop-LlamaServer
+        
+        # Stop standalone MCP server
+        Write-Status "`n[MCP SERVER] Stopping standalone MCP..." "Yellow"
+        try {
+            Get-Process -Name python -ErrorAction SilentlyContinue | 
+                Where-Object {$_.CommandLine -match 'mcp_server'} | 
+                Stop-Process -Force -ErrorAction SilentlyContinue
+            Write-Status "[OK] MCP server stopped" "Green"
+            $mcp = $true
+        } catch {
+            Write-Status "[OK] No MCP server processes running" "Green"
+            $mcp = $true
+        }
+        
         Write-Status "==========================================`n" "Yellow"
-        exit $(if ($embedding -and $llama) { 0 } else { 1 })
+        exit $(if ($embedding -and $llama -and $mcp) { 0 } else { 1 })
     }
     "status" { 
         Show-ServerStatus
