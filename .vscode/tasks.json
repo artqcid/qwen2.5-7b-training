@@ -12,14 +12,15 @@
             "args": [
                 "-NoProfile",
                 "-Command",
-                "& '${workspaceFolder}/scripts/manage_servers.ps1' -Action 'start-all'"
+                "& '${workspaceFolder}/scripts/manage_servers.ps1' -Action 'start-all'; Start-Sleep -Seconds 3; & '${workspaceFolder}/scripts/start_mcp_server.ps1'"
             ],
             "isBackground": false,
             "presentation": {
                 "reveal": "always",
                 "panel": "shared",
                 "group": "servers"
-            }
+            },
+            "problemMatcher": []
         },
         {
             "label": "Stop All Servers",
@@ -32,14 +33,15 @@
             "args": [
                 "-NoProfile",
                 "-Command",
-                "& '${workspaceFolder}/scripts/manage_servers.ps1' -Action 'stop-all'"
+                "& '${workspaceFolder}/scripts/manage_servers.ps1' -Action 'stop-all'; Get-Process -Name 'python' -ErrorAction SilentlyContinue | Where-Object {$_.CommandLine -like '*mcp_server*'} | Stop-Process -Force"
             ],
             "isBackground": false,
             "presentation": {
                 "reveal": "always",
                 "panel": "shared",
                 "group": "servers"
-            }
+            },
+            "problemMatcher": []
         },
         {
             "label": "Start Llama.cpp Server",
