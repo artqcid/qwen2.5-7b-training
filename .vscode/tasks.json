@@ -8,7 +8,7 @@
                 "isDefault": false
             },
             "type": "shell",
-            "command": "powershell",
+            "command": "pwsh",
             "args": [
                 "-NoProfile",
                 "-Command",
@@ -28,7 +28,7 @@
                 "isDefault": false
             },
             "type": "shell",
-            "command": "powershell",
+            "command": "pwsh",
             "args": [
                 "-NoProfile",
                 "-Command",
@@ -44,7 +44,7 @@
         {
             "label": "Start Llama.cpp Server",
             "type": "shell",
-            "command": "powershell",
+            "command": "pwsh",
             "args": [
                 "-NoProfile",
                 "-Command",
@@ -60,7 +60,7 @@
         {
             "label": "Stop Llama.cpp Server",
             "type": "shell",
-            "command": "powershell",
+            "command": "pwsh",
             "args": [
                 "-NoProfile",
                 "-Command",
@@ -76,7 +76,7 @@
         {
             "label": "Start Embedding Server",
             "type": "shell",
-            "command": "powershell",
+            "command": "pwsh",
             "args": [
                 "-NoProfile",
                 "-Command",
@@ -92,7 +92,7 @@
         {
             "label": "Stop Embedding Server",
             "type": "shell",
-            "command": "powershell",
+            "command": "pwsh",
             "args": [
                 "-NoProfile",
                 "-Command",
@@ -108,13 +108,13 @@
         {
             "label": "Start MCP Server",
             "type": "shell",
-            "command": "powershell",
+            "command": "pwsh",
             "args": [
                 "-NoProfile",
                 "-Command",
-                "& '${workspaceFolder}/scripts/manage_servers.ps1' -Action 'start-mcp'"
+                "& '${workspaceFolder}/scripts/start_mcp_server.ps1'"
             ],
-            "isBackground": false,
+            "isBackground": true,
             "presentation": {
                 "reveal": "always",
                 "panel": "shared",
@@ -124,11 +124,11 @@
         {
             "label": "Stop MCP Server",
             "type": "shell",
-            "command": "powershell",
+            "command": "pwsh",
             "args": [
                 "-NoProfile",
                 "-Command",
-                "& '${workspaceFolder}/scripts/manage_servers.ps1' -Action 'stop-mcp'"
+                "Get-Process -Name 'python' -ErrorAction SilentlyContinue | Where-Object {$_.CommandLine -like '*mcp_server*'} | Stop-Process -Force"
             ],
             "isBackground": false,
             "presentation": {
@@ -140,7 +140,7 @@
         {
             "label": "Show Server Status",
             "type": "shell",
-            "command": "powershell",
+            "command": "pwsh",
             "args": [
                 "-NoProfile",
                 "-Command",

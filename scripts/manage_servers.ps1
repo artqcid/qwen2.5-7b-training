@@ -1,10 +1,11 @@
 #!/usr/bin/env pwsh
 <#
 .SYNOPSIS
-    Manages embedding server and MCP server instances
+    Manages llama.cpp and embedding server instances
 
 .DESCRIPTION
-    PowerShell module for starting/stopping local AI servers
+    PowerShell module for starting/stopping local AI servers (Llama + Embedding).
+    MCP Server is now standalone - see scripts/start_mcp_server.ps1
 
 .NOTES
     Used by VS Code tasks for server management
@@ -12,11 +13,10 @@
 
 param(
     [Parameter(Mandatory=$true)]
-    [ValidateSet("start-embedding", "stop-embedding", "start-mcp", "stop-mcp", "start-llama", "stop-llama", "status", "start-all", "stop-all")]
+    [ValidateSet("start-embedding", "stop-embedding", "start-llama", "stop-llama", "status", "start-all", "stop-all")]
     [string]$Action,
     
     [string]$EmbeddingPort = "8001",
-    [string]$MCPPort = "8000",
     [string]$LlamaPort = "8080"
 )
 
@@ -28,7 +28,11 @@ function Write-Status {
         "Warning" = "Yellow"
         "Info" = "Cyan"
     }
-    Write-Host $Message -ForegroundColor $colors[$Type]
+    $color = $colors[$Type]
+    if (-not $color) {
+        $color = "White"
+    }
+    Write-Host $Message -ForegroundColor $color
 }
 
 function Get-ServerStatus {
@@ -56,7 +60,7 @@ function Start-EmbeddingServer {
     
     # Check if already running
     if (Get-ServerStatus $EmbeddingPort) {
-        Write-Status "✓ Embedding server already running on port $EmbeddingPort" "Success"
+        Write-Status "[OK] Embedding server already running on port $EmbeddingPort" "Success"
         return $true
     }
     
@@ -73,7 +77,7 @@ function Start-EmbeddingServer {
         Start-Sleep -Seconds 3
         
         if (Get-ServerStatus $EmbeddingPort) {
-            Write-Status "✓ Embedding server started successfully" "Success"
+            Write-Status "[OK] Embedding server started successfully" "Success"
             return $true
         } else {
             Write-Status "ERROR: Embedding server failed to start" "Error"
@@ -95,13 +99,13 @@ function Stop-EmbeddingServer {
     }
     
     if ($processes.Count -eq 0) {
-        Write-Status "✓ No embedding server processes running" "Success"
+        Write-Status "[OK] No embedding server processes running" "Success"
         return $true
     }
     
     try {
         $processes | Stop-Process -Force
-        Write-Status "✓ Embedding server stopped" "Success"
+        Write-Status "[OK] Embedding server stopped" "Success"
         return $true
     }
     catch {
@@ -110,78 +114,66 @@ function Stop-EmbeddingServer {
     }
 }
 
-function Start-MCPServer {
-    Write-Status "`n[MCP SERVER] Starting..." "Info"
-    
-    $projectRoot = "C:\Users\marku\Documents\GitHub\artqcid\ai-projects\qwen2.5-7b-training"
-    $mcpDir = Join-Path $projectRoot "mcp-server-misc"
-    
-    if (-not (Test-Path $mcpDir)) {
-        Write-Status "ERROR: mcp-server-misc not found at $mcpDir" "Error"
-        return $false
-    }
-    
-    # MCP server is started as experimental MCP in Continue
-    Write-Status "ℹ MCP server is managed by Continue IDE (experimentalMcp)" "Info"
-    Write-Status "✓ MCP server configuration is active" "Success"
-    return $true
-}
-
-function Stop-MCPServer {
-    Write-Status "`n[MCP SERVER] Stopping..." "Info"
-    
-    $processes = Get-Process -Name "python" -ErrorAction SilentlyContinue | Where-Object {
-        $_.CommandLine -like "*mcp_server*"
-    }
-    
-    if ($processes.Count -eq 0) {
-        Write-Status "✓ No MCP server processes running" "Success"
-        return $true
-    }
-    
-    try {
-        $processes | Stop-Process -Force
-        Write-Status "✓ MCP server stopped" "Success"
-        return $true
-    }
-    catch {
-        Write-Status "ERROR: Failed to stop MCP server: $_" "Error"
-        return $false
-    }
-}
-
 function Start-LlamaServer {
     Write-Status "`n[LLAMA.CPP SERVER] Starting on port $LlamaPort..." "Info"
     
-    $llamaPath = "C:\llama\server.exe"
+    $projectRoot = "C:\Users\marku\Documents\GitHub\artqcid\ai-projects\qwen2.5-7b-training"
+    $configPath = Join-Path $projectRoot "llama_config.json"
+    $llamaPath = "C:\llama\llama-server.exe"
+    
+    # Load config
+    if (-not (Test-Path $configPath)) {
+        Write-Status "ERROR: llama_config.json not found at $configPath" "Error"
+        return $false
+    }
+    $config = Get-Content $configPath | ConvertFrom-Json
+    $llamaConfig = $config.llama_cpp
     
     if (-not (Test-Path $llamaPath)) {
         Write-Status "ERROR: llama-server not found at $llamaPath" "Error"
         return $false
     }
     
+    if (-not (Test-Path $llamaConfig.modelPath)) {
+        Write-Status "ERROR: Model file not found at $($llamaConfig.modelPath)" "Error"
+        return $false
+    }
+    
     # Check if already running
     if (Get-ServerStatus $LlamaPort) {
-        Write-Status "✓ Llama.cpp server already running on port $LlamaPort" "Success"
+        Write-Status "[OK] Llama.cpp server already running on port $LlamaPort" "Success"
         return $true
     }
     
     try {
-        # Start server in background
-        Start-Process -FilePath $llamaPath -ArgumentList @(
-            "-m", "models/qwen2.5-7b-chat.gguf",
-            "--port", $LlamaPort,
-            "-ngl", "33"
+        # Start server in background with full configuration
+        $process = Start-Process -FilePath $llamaPath -ArgumentList @(
+            "--model", $llamaConfig.modelPath,
+            "--port", $llamaConfig.port,
+            "--ctx-size", $llamaConfig.ctxSize,
+            "--batch-size", $llamaConfig.batchSize,
+            "--ubatch-size", $llamaConfig.ubatchSize,
+            "--parallel", $llamaConfig.parallel,
+            "--threads", $llamaConfig.threads,
+            "--n-gpu-layers", $llamaConfig.gpuLayers,
+            "--cache-type-k", $llamaConfig.cacheK,
+            "--cache-type-v", $llamaConfig.cacheV,
+            "--temp", $llamaConfig.temp,
+            "--top-k", $llamaConfig.topK,
+            "--top-p", $llamaConfig.topP,
+            "--repeat-penalty", $llamaConfig.repeatPen,
+            "--mirostat", $llamaConfig.mirostat,
+            "--flash-attn", "auto"
         ) -NoNewWindow -PassThru
         
         # Wait for server to start
         Start-Sleep -Seconds 3
         
         if (Get-ServerStatus $LlamaPort) {
-            Write-Status "✓ Llama.cpp server started successfully" "Success"
+            Write-Status "[OK] Llama.cpp server started successfully" "Success"
             return $true
         } else {
-            Write-Status "ERROR: Llama.cpp server failed to start (check C:\llama)" "Error"
+            Write-Status "ERROR: Llama.cpp server failed to start" "Error"
             return $false
         }
     }
@@ -194,18 +186,16 @@ function Start-LlamaServer {
 function Stop-LlamaServer {
     Write-Status "`n[LLAMA.CPP SERVER] Stopping..." "Info"
     
-    $processes = Get-Process -Name "server" -ErrorAction SilentlyContinue | Where-Object {
-        $_.Path -like "*llama*"
-    }
+    $processes = Get-Process -Name "llama-server" -ErrorAction SilentlyContinue
     
-    if ($processes.Count -eq 0) {
-        Write-Status "✓ No llama-server processes running" "Success"
+    if ($null -eq $processes) {
+        Write-Status "[OK] No llama-server processes running" "Success"
         return $true
     }
     
     try {
         $processes | Stop-Process -Force
-        Write-Status "✓ Llama.cpp server stopped" "Success"
+        Write-Status "[OK] Llama.cpp server stopped" "Success"
         return $true
     }
     catch {
@@ -218,14 +208,19 @@ function Show-ServerStatus {
     Write-Status "`n========== SERVER STATUS ==========" "Info"
     
     $embeddingRunning = Get-ServerStatus $EmbeddingPort
-    $embeddingStatus = if ($embeddingRunning) { "✓ RUNNING" } else { "✗ STOPPED" }
+    $embeddingStatus = if ($embeddingRunning) { "[OK] RUNNING" } else { "[--] STOPPED" }
     
     $llamaRunning = Get-ServerStatus $LlamaPort
-    $llamaStatus = if ($llamaRunning) { "✓ RUNNING" } else { "✗ STOPPED" }
+    $llamaStatus = if ($llamaRunning) { "[OK] RUNNING" } else { "[--] STOPPED" }
+    
+    $mcpRunning = Get-Process -Name "python" -ErrorAction SilentlyContinue | Where-Object {
+        $_.CommandLine -like "*mcp_server*"
+    }
+    $mcpStatus = if ($mcpRunning) { "[OK] RUNNING (Standalone)" } else { "[--] STOPPED" }
     
     Write-Host "Llama.cpp Server (Port $LlamaPort):     $llamaStatus"
     Write-Host "Embedding Server (Port $EmbeddingPort): $embeddingStatus"
-    Write-Host "MCP Server (Continue IDE):     Check Continue settings"
+    Write-Host "MCP Server (Standalone):        $mcpStatus"
     
     Write-Status "==================================`n" "Info"
 }
@@ -238,14 +233,6 @@ switch ($Action) {
     }
     "stop-embedding" { 
         $result = Stop-EmbeddingServer
-        exit $(if ($result) { 0 } else { 1 })
-    }
-    "start-mcp" { 
-        $result = Start-MCPServer
-        exit $(if ($result) { 0 } else { 1 })
-    }
-    "stop-mcp" { 
-        $result = Stop-MCPServer
         exit $(if ($result) { 0 } else { 1 })
     }
     "start-llama" { 
@@ -261,20 +248,20 @@ switch ($Action) {
         $llama = Start-LlamaServer
         Start-Sleep -Seconds 2
         $embedding = Start-EmbeddingServer
-        Start-Sleep -Seconds 2
-        $mcp = Start-MCPServer
         Write-Status "==========================================`n" "Cyan"
-        exit $(if ($llama -and $embedding -and $mcp) { 0 } else { 1 })
+        Write-Status "Note: MCP Server is standalone. Start with 'Start MCP Server' task if needed." "Info"
+        exit $(if ($llama -and $embedding) { 0 } else { 1 })
     }
     "stop-all" {
         Write-Status "`n========== STOPPING ALL SERVERS ==========" "Yellow"
         $embedding = Stop-EmbeddingServer
-        $mcp = Stop-MCPServer
         $llama = Stop-LlamaServer
         Write-Status "==========================================`n" "Yellow"
-        exit $(if ($embedding -and $mcp -and $llama) { 0 } else { 1 })
+        Write-Status "Note: Use 'Stop MCP Server' task to stop standalone MCP." "Info"
+        exit $(if ($embedding -and $llama) { 0 } else { 1 })
     }
     "status" { 
         Show-ServerStatus
     }
 }
+
