@@ -1,0 +1,157 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Start All Servers",
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "-NoProfile",
+                "-Command",
+                "& '${workspaceFolder}/scripts/manage_servers.ps1' -Action 'start-all'"
+            ],
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "group": "servers"
+            }
+        },
+        {
+            "label": "Stop All Servers",
+            "group": {
+                "kind": "test",
+                "isDefault": false
+            },
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "-NoProfile",
+                "-Command",
+                "& '${workspaceFolder}/scripts/manage_servers.ps1' -Action 'stop-all'"
+            ],
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "group": "servers"
+            }
+        },
+        {
+            "label": "Start Llama.cpp Server",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "-NoProfile",
+                "-Command",
+                "& '${workspaceFolder}/scripts/manage_servers.ps1' -Action 'start-llama'"
+            ],
+            "isBackground": true,
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "group": "servers"
+            }
+        },
+        {
+            "label": "Stop Llama.cpp Server",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "-NoProfile",
+                "-Command",
+                "& '${workspaceFolder}/scripts/manage_servers.ps1' -Action 'stop-llama'"
+            ],
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "group": "servers"
+            }
+        },
+        {
+            "label": "Start Embedding Server",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "-NoProfile",
+                "-Command",
+                "& '${workspaceFolder}/scripts/manage_servers.ps1' -Action 'start-embedding'"
+            ],
+            "isBackground": true,
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "group": "servers"
+            }
+        },
+        {
+            "label": "Stop Embedding Server",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "-NoProfile",
+                "-Command",
+                "& '${workspaceFolder}/scripts/manage_servers.ps1' -Action 'stop-embedding'"
+            ],
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "group": "servers"
+            }
+        },
+        {
+            "label": "Start MCP Server",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "-NoProfile",
+                "-Command",
+                "& '${workspaceFolder}/scripts/manage_servers.ps1' -Action 'start-mcp'"
+            ],
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "group": "servers"
+            }
+        },
+        {
+            "label": "Stop MCP Server",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "-NoProfile",
+                "-Command",
+                "& '${workspaceFolder}/scripts/manage_servers.ps1' -Action 'stop-mcp'"
+            ],
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "group": "servers"
+            }
+        },
+        {
+            "label": "Show Server Status",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "-NoProfile",
+                "-Command",
+                "& '${workspaceFolder}/scripts/manage_servers.ps1' -Action 'status'"
+            ],
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "group": "servers"
+            }
+        }
+    ]
+}

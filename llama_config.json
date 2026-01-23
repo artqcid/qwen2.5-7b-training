@@ -1,0 +1,22 @@
+{
+  "llama_cpp": {
+    "llamaCppPath": "C:/llama/llama-server.exe",
+    "modelPath": "D:/AI-Models/llama/qwen/Qwen2.5-Coder-7B-Q4_K_M.gguf",
+    "port": 8080,
+    "ctxSize": 12288,
+    "batchSize": 128,
+    "ubatchSize": 64,
+    "parallel": 1,
+    "threads": 6,
+    "gpuLayers": 28,
+    "cacheK": "q8_0",
+    "cacheV": "f16",
+    "nPredict": 256,
+    "temp": 0.2,
+    "topK": 40,
+    "topP": 0.9,
+    "repeatPen": 1.08,
+    "mirostat": 0,
+    "flashAttn": 0
+  }
+}

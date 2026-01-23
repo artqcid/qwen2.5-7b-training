@@ -1,0 +1,36 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../../../../.continue"
+		},
+		{
+			"path": "../../../../../AppData/Roaming/Code/User"
+		},
+		{
+			"path": "../../../../../../../llama"
+		},
+		{
+			"path": "../../misc-projects/vscode-extension/vscode-autostart-extension"
+		}
+	],
+	"settings": {
+		"[python]": {
+			"editor.formatOnSave": true,
+			"editor.defaultFormatter": "ms-python.python"
+		},
+		"python.linting.enabled": true,
+		"python.linting.pylintEnabled": true
+	},
+	"launch": {
+		"version": "0.2.0",
+		"compounds": [
+			{
+				"name": "Start All Servers",
+				"preLaunchTask": "Start All Servers"
+			}
+		]
+	}
+}
