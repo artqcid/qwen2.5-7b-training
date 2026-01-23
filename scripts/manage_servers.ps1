@@ -257,15 +257,21 @@ switch ($Action) {
         $llama = Stop-LlamaServer
         
         # Stop standalone MCP server
-        Write-Status "`n[MCP SERVER] Stopping standalone MCP..." "Yellow"
+        Write-Status "`n[MCP SERVER] Stopping..." "Info"
         try {
-            Get-Process -Name python -ErrorAction SilentlyContinue | 
-                Where-Object {$_.CommandLine -match 'mcp_server'} | 
-                Stop-Process -Force -ErrorAction SilentlyContinue
-            Write-Status "[OK] MCP server stopped" "Green"
-            $mcp = $true
+            $mcpProcesses = Get-Process -Name python -ErrorAction SilentlyContinue | 
+                Where-Object {$_.CommandLine -match 'mcp_server'}
+            
+            if ($mcpProcesses.Count -eq 0) {
+                Write-Status "[OK] No MCP server processes running" "Success"
+                $mcp = $true
+            } else {
+                $mcpProcesses | Stop-Process -Force
+                Write-Status "[OK] MCP server stopped" "Success"
+                $mcp = $true
+            }
         } catch {
-            Write-Status "[OK] No MCP server processes running" "Green"
+            Write-Status "[OK] No MCP server processes running" "Success"
             $mcp = $true
         }
         
