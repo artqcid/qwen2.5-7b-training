@@ -1,7 +1,20 @@
 {
 	"folders": [
 		{
-			"path": "."
+			"path": ".",
+			"name": "Qwen Training"
+		},
+		{
+			"path": "../embedding-server-misc",
+			"name": "Embedding Server"
+		},
+		{
+			"path": "../mcp-server-misc",
+			"name": "MCP Server"
+		},
+		{
+			"path": "../rag-server-misc",
+			"name": "RAG Server"
 		},
 		{
 			"path": "../../../../../.continue"
