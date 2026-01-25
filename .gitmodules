@@ -4,3 +4,6 @@
 [submodule "embedding-server-misc"]
 	path = embedding-server-misc
 	url = https://github.com/artqcid/embedding-server-misc.git
+[submodule "rag-server-misc"]
+	path = rag-server-misc
+	url = https://github.com/artqcid/rag-server-misc.git
