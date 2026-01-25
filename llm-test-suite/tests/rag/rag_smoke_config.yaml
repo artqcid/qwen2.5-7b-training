@@ -1,0 +1,64 @@
+enabled: true
+
+# Test collection name
+collection: test_rag_vue
+
+# Similarity thresholds
+search_threshold: 0.5
+rag_quality_threshold: 0.6
+
+# Vue.js test documents
+test_documents:
+  - content: |
+      Vue.js Composition API is a set of additive, function-based APIs that allow flexible composition of component logic.
+      It provides better logic reuse and more flexible code organization compared to Options API.
+      The main functions include: ref() for reactive state, reactive() for reactive objects, computed() for computed properties,
+      watch() and watchEffect() for side effects, and lifecycle hooks like onMounted() and onUnmounted().
+    metadata:
+      source: "vue-guide-composition-api"
+      url: "https://vuejs.org/guide/extras/composition-api-faq.html"
+      topic: "composition-api"
+      
+  - content: |
+      Vue's reactivity system works by tracking property access and mutations. When you read a reactive property,
+      it gets tracked as a dependency. When you change a reactive property, it triggers updates to any effects that depend on it.
+      Vue 3 uses Proxies for reactivity, which allows it to intercept all property access and mutations.
+      ref() creates a reactive reference with a .value property, while reactive() makes an entire object reactive.
+    metadata:
+      source: "vue-guide-reactivity"
+      url: "https://vuejs.org/guide/essentials/reactivity-fundamentals.html"
+      topic: "reactivity"
+      
+  - content: |
+      Components are the building blocks of Vue applications. A component is a reusable Vue instance with a name.
+      Single-File Components (SFC) use the .vue extension and combine template, script, and style in one file.
+      Components can receive data via props and emit events to communicate with parent components.
+      The <script setup> syntax provides a more concise way to define component logic in Composition API.
+    metadata:
+      source: "vue-guide-components"
+      url: "https://vuejs.org/guide/essentials/component-basics.html"
+      topic: "components"
+
+# Test queries for RAG
+test_queries:
+  - query: "What is Vue Composition API?"
+    expected_keywords: ["composition", "api", "reactive", "ref", "function"]
+    min_sources: 1
+    
+  - query: "How does Vue reactivity work?"
+    expected_keywords: ["reactive", "proxy", "tracking", "dependency"]
+    min_sources: 1
+    
+  - query: "What are Vue components?"
+    expected_keywords: ["component", "reusable", "props", "emit"]
+    min_sources: 1
+
+# Search test cases
+search_tests:
+  - query: "reactive state management"
+    min_results: 2
+    expected_topics: ["reactivity", "composition-api"]
+    
+  - query: "component communication"
+    min_results: 1
+    expected_topics: ["components"]

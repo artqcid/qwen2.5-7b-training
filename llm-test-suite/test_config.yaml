@@ -9,6 +9,12 @@ embedding:
   timeout: 30
   expected_dimension: 768  # Actual model dimension
 
+rag:
+  endpoint: http://127.0.0.1:8002
+  timeout: 60
+  collection: test_rag_vue
+  min_similarity: 0.5
+
 # Path to web_context_sets.json (relative to this file)
 context_sets_file: ../mcp-server-misc/web_context_sets.json
 

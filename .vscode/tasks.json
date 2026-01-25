@@ -194,6 +194,29 @@
                 "clear": true
             },
             "problemMatcher": []
+        },
+        {
+            "label": "LLM: RAG Smoke Tests",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-m",
+                "pytest",
+                "llm-test-suite/tests/rag/",
+                "-v",
+                "--color=yes",
+                "--tb=short"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true
+            },
+            "problemMatcher": []
         }
     ]
 }
