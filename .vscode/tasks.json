@@ -46,7 +46,7 @@
             "presentation": {
                 "reveal": "always",
                 "panel": "dedicated",
-                "group": "llama-start"
+                "focus": false
             }
         },
         {
@@ -82,7 +82,7 @@
             "presentation": {
                 "reveal": "always",
                 "panel": "dedicated",
-                "group": "embedding-start"
+                "focus": false
             }
         },
         {
@@ -118,7 +118,7 @@
             "presentation": {
                 "reveal": "always",
                 "panel": "dedicated",
-                "group": "rag-start"
+                "focus": false
             }
         },
         {
@@ -154,7 +154,7 @@
             "presentation": {
                 "reveal": "always",
                 "panel": "dedicated",
-                "group": "mcp-start"
+                "focus": false
             }
         },
         {
@@ -177,12 +177,12 @@
         },
         {
             "label": "Show Server Status",
-            "type": "shell",
+            "type": "process",
             "command": "pwsh",
             "args": [
                 "-NoProfile",
                 "-Command",
-                "Write-Host 'LLAMA SERVER:' -ForegroundColor Cyan; Get-Process llama-server -ErrorAction SilentlyContinue | Select-Object ProcessName, Id, CPU, Memory; Write-Host 'EMBEDDING SERVER:' -ForegroundColor Cyan; Get-Process python -ErrorAction SilentlyContinue | Where-Object { $_.CommandLine -like '*embedding*' } | Select-Object ProcessName, Id, CPU, Memory; Write-Host 'MCP SERVER:' -ForegroundColor Cyan; Get-Process python -ErrorAction SilentlyContinue | Where-Object { $_.CommandLine -like '*mcp*' } | Select-Object ProcessName, Id, CPU, Memory"
+                "& { Write-Host 'LLAMA SERVER:' -ForegroundColor Cyan; Get-Process llama-server -ErrorAction SilentlyContinue | Select-Object ProcessName, Id, CPU, Memory; Write-Host 'EMBEDDING SERVER:' -ForegroundColor Cyan; Get-Process python -ErrorAction SilentlyContinue | Where-Object { $_.CommandLine -like '*embedding*' } | Select-Object ProcessName, Id, CPU, Memory; Write-Host 'MCP SERVER:' -ForegroundColor Cyan; Get-Process python -ErrorAction SilentlyContinue | Where-Object { $_.CommandLine -like '*mcp*' } | Select-Object ProcessName, Id, CPU, Memory }"
             ],
             "isBackground": false,
             "presentation": {

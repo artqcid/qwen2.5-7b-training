@@ -12,7 +12,7 @@
     - Direct HTTP/SSE clients
 
 .PARAMETER Port
-    Port for SSE endpoint (default: 3001)
+    Port for SSE endpoint (default: 8003)
 
 .PARAMETER ConfigFile
     Path to mcp_config.json (default: ./mcp_config.json)
@@ -27,7 +27,7 @@
 #>
 
 param(
-    [int]$Port = 3001,
+    [int]$Port = 8003,
     [string]$ConfigFile = $null
 )
 
@@ -52,20 +52,26 @@ function Write-Status {
     Write-Host $Message -ForegroundColor $color
 }
 
-# Get script directory
-$ScriptDir = Split-Path -Parent $MyInvocation.MyCommandPath
-$ProjectRoot = Split-Path -Parent $ScriptDir
-$MCPDir = Join-Path $ProjectRoot "mcp-server-misc"
+# Get script directory (robust: works when run via -Command or -File)
+$ScriptDir = if ($MyInvocation.MyCommand.Path) {
+    Split-Path -Parent $MyInvocation.MyCommand.Path
+} elseif ($PSScriptRoot) {
+    $PSScriptRoot
+} else {
+    $PWD.Path
+}
 
-# Resolve config file - try mcp-server-misc first, then fallback to local
+# Hardcoded fallback path to mcp-server-misc (typical workspace layout)
+$MCPDir = "C:\Users\marku\Documents\GitHub\artqcid\ai-projects\mcp-server-misc"
+if (-not (Test-Path $MCPDir)) {
+    # Try relative from script dir
+    $ProjectRoot = Split-Path -Parent $ScriptDir
+    $MCPDir = Join-Path (Split-Path -Parent $ProjectRoot) "mcp-server-misc"
+}
+
+# Resolve config file
 if ([string]::IsNullOrEmpty($ConfigFile)) {
-    if (Test-Path $MCPDir) {
-        $ConfigFile = Join-Path $MCPDir "mcp_config.json"
-    } else {
-        # Fallback to project-local config
-        $ConfigFile = Join-Path $ScriptDir "mcp_config.json"
-        $MCPDir = $ProjectRoot
-    }
+    $ConfigFile = Join-Path $MCPDir "web_context_sets.json"
 }
 
 if (-not (Test-Path $ConfigFile)) {
@@ -97,11 +103,16 @@ $env:PYTHONUNBUFFERED = "1"
 
 try {
     Push-Location $MCPDir
+
+    # Prefer the MCP project's virtualenv python if available
+    $venvPython = Join-Path $MCPDir ".venv\Scripts\python.exe"
+    $pythonExe = if (Test-Path $venvPython) { $venvPython } else { "python" }
     
     # Start MCP server as background process
-    $process = Start-Process -FilePath "python" -ArgumentList @(
+    $process = Start-Process -FilePath $pythonExe -ArgumentList @(
         "-m", "mcp_server",
         "--config", $ConfigFile,
+        "--transport", "sse",
         "--sse-port", $Port
     ) -NoNewWindow -PassThru
     

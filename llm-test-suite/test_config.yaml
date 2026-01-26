@@ -16,5 +16,6 @@ rag:
   min_similarity: 0.5
 
 # Path to web_context_sets.json (relative to this file)
-context_sets_file: ../mcp-server-misc/web_context_sets.json
+# MCP repo is in ai-projects, not in qwen2.5-7b-training
+context_sets_file: ../../mcp-server-misc/web_context_sets.json
 
