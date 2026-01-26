@@ -125,7 +125,8 @@ def test_context_smoke(
     
     for keyword in expected_keywords:
         # Use word boundary regex for better matching
-        pattern = r'\b' + re.escape(keyword.lower()) + r'\b'
+        # Allow optional 's' for plurals (e.g., "toolset" or "toolsets")
+        pattern = r'\b' + re.escape(keyword.lower()) + r's?\b'
         if re.search(pattern, response_lower):
             hits += 1
             matched_keywords.append(keyword)
