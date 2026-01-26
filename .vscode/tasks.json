@@ -6,7 +6,8 @@
             "dependsOn": [
                 "Start Embedding Server",
                 "Start Llama.cpp Server",
-                "Start Rag Server"
+                "Start Rag Server",
+                "Start MCP Server"
             ],
             "dependsOrder": "parallel",
             "group": {
@@ -24,7 +25,8 @@
             "dependsOn": [
                 "Stop Llama.cpp Server",
                 "Stop Embedding Server",
-                "Stop Rag Server"
+                "Stop Rag Server",
+                "Stop MCP Server"
             ],
             "dependsOrder": "parallel",
             "group": {
@@ -148,7 +150,7 @@
                 "-ExecutionPolicy",
                 "Bypass",
                 "-File",
-                "${workspaceFolder}/../mcp-server-misc/start.ps1"
+                "${workspaceFolder}/../mcp-server-misc/start-sse.ps1"
             ],
             "isBackground": true,
             "presentation": {
@@ -163,7 +165,7 @@
             "args": [
                 "-NoProfile",
                 "-Command",
-                "Get-Process python -ErrorAction SilentlyContinue | Where-Object { $_.CommandLine -like '*mcp_server*' } | Stop-Process -Force"
+                "Get-Process python -ErrorAction SilentlyContinue | Where-Object { $_.CommandLine -like '*web_mcp*' } | Stop-Process -Force"
             ],
             "isBackground": false,
             "presentation": {
