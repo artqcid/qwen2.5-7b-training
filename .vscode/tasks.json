@@ -14,10 +14,6 @@
                 "kind": "build",
                 "isDefault": false
             },
-            "presentation": {
-                "reveal": "always",
-                "panel": "dedicated"
-            },
             "problemMatcher": []
         },
         {
@@ -32,11 +28,6 @@
             "group": {
                 "kind": "test",
                 "isDefault": false
-            },
-            "presentation": {
-                "reveal": "always",
-                "panel": "dedicated",
-                "group": "servers"
             },
             "problemMatcher": []
         },
@@ -54,7 +45,8 @@
             "isBackground": true,
             "presentation": {
                 "reveal": "always",
-                "panel": "dedicated"
+                "panel": "dedicated",
+                "group": "llama-start"
             }
         },
         {
@@ -70,7 +62,7 @@
             "presentation": {
                 "reveal": "always",
                 "panel": "dedicated",
-                "group": "servers"
+                "group": "llama-stop"
             }
         },
         {
@@ -87,7 +79,8 @@
             "isBackground": true,
             "presentation": {
                 "reveal": "always",
-                "panel": "dedicated"
+                "panel": "dedicated",
+                "group": "embedding-start"
             }
         },
         {
@@ -103,7 +96,7 @@
             "presentation": {
                 "reveal": "always",
                 "panel": "dedicated",
-                "group": "servers"
+                "group": "embedding-stop"
             }
         },
         {
@@ -120,7 +113,8 @@
             "isBackground": true,
             "presentation": {
                 "reveal": "always",
-                "panel": "dedicated"
+                "panel": "dedicated",
+                "group": "rag-start"
             }
         },
         {
@@ -138,7 +132,7 @@
             "presentation": {
                 "reveal": "always",
                 "panel": "dedicated",
-                "group": "servers"
+                "group": "rag-stop"
             }
         },
         {
@@ -155,7 +149,8 @@
             "isBackground": true,
             "presentation": {
                 "reveal": "always",
-                "panel": "dedicated"
+                "panel": "dedicated",
+                "group": "mcp-start"
             }
         },
         {
@@ -171,7 +166,7 @@
             "presentation": {
                 "reveal": "always",
                 "panel": "dedicated",
-                "group": "servers"
+                "group": "mcp-stop"
             }
         },
         {
@@ -187,7 +182,7 @@
             "presentation": {
                 "reveal": "always",
                 "panel": "dedicated",
-                "group": "servers"
+                "group": "status"
             },
             "problemMatcher": []
         },
@@ -210,7 +205,8 @@
             "presentation": {
                 "reveal": "always",
                 "panel": "dedicated",
-                "clear": true
+                "clear": true,
+                "group": "test-mcp"
             },
             "problemMatcher": []
         },
@@ -233,7 +229,8 @@
             "presentation": {
                 "reveal": "always",
                 "panel": "dedicated",
-                "clear": true
+                "clear": true,
+                "group": "test-embedding"
             },
             "problemMatcher": []
         },
@@ -258,7 +255,8 @@
             "presentation": {
                 "reveal": "always",
                 "panel": "dedicated",
-                "clear": true
+                "clear": true,
+                "group": "test-all"
             },
             "problemMatcher": [],
             "dependsOn": [
@@ -286,7 +284,8 @@
             "presentation": {
                 "reveal": "always",
                 "panel": "dedicated",
-                "clear": true
+                "clear": true,
+                "group": "test-rag"
             },
             "problemMatcher": []
         }
