@@ -15,6 +15,11 @@ Navigate to the documentation you need:
 - Troubleshooting quick fixes
 - Port configuration
 
+### Test Tasks (VS Code)
+- **LLM: ALL Smoke Tests** – schnelle Teilabdeckung (`-k smoke`) mit venv-Python.
+- **LLM: ALL Tests** – vollständige llm-test-suite (alle Suiten).
+- Empfehlung PR-Gate: erst ALL Smoke, dann ALL Tests; beide setzen laufende Server voraus.
+
 ### For Complete Setup
 👉 **[COMPLETE_GUIDE.md](COMPLETE_GUIDE.md)** - Full deployment guide (15-minute read)
 - Architecture overview

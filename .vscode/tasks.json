@@ -195,7 +195,7 @@
         {
             "label": "LLM: MCP Smoke Tests",
             "type": "shell",
-            "command": "python",
+            "command": "C:/Users/marku/Documents/GitHub/artqcid/ai-projects/qwen2.5-7b-training/.venv/Scripts/python.exe",
             "args": [
                 "-m",
                 "pytest",
@@ -219,7 +219,7 @@
         {
             "label": "LLM: Embedding Smoke Tests",
             "type": "shell",
-            "command": "python",
+            "command": "C:/Users/marku/Documents/GitHub/artqcid/ai-projects/qwen2.5-7b-training/.venv/Scripts/python.exe",
             "args": [
                 "-m",
                 "pytest",
@@ -243,7 +243,7 @@
         {
             "label": "LLM: ALL Smoke Tests",
             "type": "shell",
-            "command": "python",
+            "command": "C:/Users/marku/Documents/GitHub/artqcid/ai-projects/qwen2.5-7b-training/.venv/Scripts/python.exe",
             "args": [
                 "-m",
                 "pytest",
@@ -262,7 +262,7 @@
                 "reveal": "always",
                 "panel": "dedicated",
                 "clear": true,
-                "group": "test-all"
+                "group": "test-all-smoke"
             },
             "problemMatcher": [],
             "dependsOn": [
@@ -272,9 +272,33 @@
             ]
         },
         {
+            "label": "LLM: ALL Tests",
+            "type": "shell",
+            "command": "C:/Users/marku/Documents/GitHub/artqcid/ai-projects/qwen2.5-7b-training/.venv/Scripts/python.exe",
+            "args": [
+                "-m",
+                "pytest",
+                "llm-test-suite/tests/",
+                "-v",
+                "--color=yes",
+                "--tb=short"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true,
+                "group": "test-all"
+            },
+            "problemMatcher": []
+        },
+        {
             "label": "LLM: RAG Smoke Tests",
             "type": "shell",
-            "command": "python",
+            "command": "C:/Users/marku/Documents/GitHub/artqcid/ai-projects/qwen2.5-7b-training/.venv/Scripts/python.exe",
             "args": [
                 "-m",
                 "pytest",
@@ -298,7 +322,7 @@
         {
             "label": "LLM: RAG Quality Gate Tests",
             "type": "shell",
-            "command": "python",
+            "command": "C:/Users/marku/Documents/GitHub/artqcid/ai-projects/qwen2.5-7b-training/.venv/Scripts/python.exe",
             "args": [
                 "-m",
                 "pytest",
@@ -322,7 +346,7 @@
         {
             "label": "LLM: MCP RAG-First Tests",
             "type": "shell",
-            "command": "python",
+            "command": "C:/Users/marku/Documents/GitHub/artqcid/ai-projects/qwen2.5-7b-training/.venv/Scripts/python.exe",
             "args": [
                 "-m",
                 "pytest",
@@ -346,7 +370,7 @@
         {
             "label": "LLM: RAG-First Architecture Tests",
             "type": "shell",
-            "command": "python",
+            "command": "C:/Users/marku/Documents/GitHub/artqcid/ai-projects/qwen2.5-7b-training/.venv/Scripts/python.exe",
             "args": [
                 "-m",
                 "pytest",
