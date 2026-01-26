@@ -148,7 +148,7 @@
                 "-ExecutionPolicy",
                 "Bypass",
                 "-File",
-                "${workspaceFolder:mcp-server-misc}/start-sse.ps1"
+                "${workspaceFolder}/../mcp-server-misc/start-sse.ps1"
             ],
             "isBackground": true,
             "presentation": {
@@ -166,7 +166,7 @@
                 "-ExecutionPolicy",
                 "Bypass",
                 "-File",
-                "${workspaceFolder:mcp-server-misc}/stop.ps1"
+                "${workspaceFolder}/../mcp-server-misc/stop.ps1"
             ],
             "isBackground": false,
             "presentation": {
