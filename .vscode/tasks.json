@@ -140,6 +140,39 @@
             }
         },
         {
+            "label": "Start MCP Server",
+            "type": "shell",
+            "command": "pwsh",
+            "args": [
+                "-NoProfile",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "${workspaceFolder}/../mcp-server-misc/start.ps1"
+            ],
+            "isBackground": true,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            }
+        },
+        {
+            "label": "Stop MCP Server",
+            "type": "shell",
+            "command": "pwsh",
+            "args": [
+                "-NoProfile",
+                "-Command",
+                "Get-Process python -ErrorAction SilentlyContinue | Where-Object { $_.CommandLine -like '*mcp_server*' } | Stop-Process -Force"
+            ],
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "group": "servers"
+            }
+        },
+        {
             "label": "Show Server Status",
             "type": "shell",
             "command": "pwsh",
