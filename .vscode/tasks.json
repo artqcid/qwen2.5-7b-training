@@ -55,8 +55,10 @@
             "command": "pwsh",
             "args": [
                 "-NoProfile",
-                "-Command",
-                "Get-Process llama-server -ErrorAction SilentlyContinue | Stop-Process -Force"
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "C:\\Users\\marku\\.continue\\llama-stop.ps1"
             ],
             "isBackground": false,
             "presentation": {
@@ -89,8 +91,10 @@
             "command": "pwsh",
             "args": [
                 "-NoProfile",
-                "-Command",
-                "Get-Process python -ErrorAction SilentlyContinue | Where-Object { $_.CommandLine -like '`*embedding_server`*' } | Stop-Process -Force"
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "${workspaceFolder}/../embedding-server-misc/stop.ps1"
             ],
             "isBackground": false,
             "presentation": {
@@ -159,8 +163,10 @@
             "command": "pwsh",
             "args": [
                 "-NoProfile",
-                "-Command",
-                "Get-Process python -ErrorAction SilentlyContinue | Where-Object { $_.CommandLine -like '`*web_mcp`*' } | Stop-Process -Force"
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "${workspaceFolder}/../mcp-server-misc/stop.ps1"
             ],
             "isBackground": false,
             "presentation": {
