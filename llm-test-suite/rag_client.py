@@ -12,6 +12,7 @@ class RAGClient:
         self.client = httpx.Client(
             timeout=httpx.Timeout(timeout, connect=10.0, read=timeout, write=30.0),
             limits=httpx.Limits(max_connections=4, max_keepalive_connections=2),
+            http2=False  # Disable HTTP/2 for compatibility
         )
     
     def health(self) -> Dict[str, Any]:
@@ -35,7 +36,7 @@ class RAGClient:
             "collection": collection
         }
         
-        response = self.client.post(f"{self.endpoint}/index", json=payload)
+        response = self.client.post(f"{self.endpoint}/v1/rag/index", json=payload)
         response.raise_for_status()
         return response.json()
     
@@ -60,7 +61,7 @@ class RAGClient:
         if min_score is not None:
             payload["min_score"] = min_score
         
-        response = self.client.post(f"{self.endpoint}/search", json=payload)
+        response = self.client.post(f"{self.endpoint}/v1/rag/search", json=payload)
         response.raise_for_status()
         return response.json()
     
@@ -89,7 +90,7 @@ class RAGClient:
             "temperature": temperature
         }
         
-        response = self.client.post(f"{self.endpoint}/query", json=payload)
+        response = self.client.post(f"{self.endpoint}/v1/rag/query", json=payload)
         response.raise_for_status()
         return response.json()
     
@@ -102,7 +103,7 @@ class RAGClient:
         Returns:
             Dict with status and message
         """
-        response = self.client.delete(f"{self.endpoint}/collection/{collection}")
+        response = self.client.delete(f"{self.endpoint}/v1/rag/collections/{collection}")
         response.raise_for_status()
         return response.json()
     
