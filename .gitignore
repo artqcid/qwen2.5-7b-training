@@ -13,3 +13,6 @@ __pycache__/
 
 # OS/editor noise
 .DS_Store
+# Qdrant runtime data
+storage/
+.qdrant-initialized
