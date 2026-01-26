@@ -5,7 +5,8 @@
             "label": "Start All Servers",
             "dependsOn": [
                 "Start Embedding Server",
-                "Start Llama.cpp Server"
+                "Start Llama.cpp Server",
+                "Start Rag Server"
             ],
             "dependsOrder": "parallel",
             "group": {
@@ -20,20 +21,16 @@
         },
         {
             "label": "Stop All Servers",
+            "dependsOn": [
+                "Stop Llama.cpp Server",
+                "Stop Embedding Server",
+                "Stop Rag Server"
+            ],
+            "dependsOrder": "parallel",
             "group": {
                 "kind": "test",
                 "isDefault": false
             },
-            "type": "shell",
-            "command": "pwsh",
-            "args": [
-                "-NoProfile",
-                "-ExecutionPolicy",
-                "Bypass",
-                "-File",
-                "${workspaceFolder}/scripts/stop-all-servers.ps1"
-            ],
-            "isBackground": false,
             "presentation": {
                 "reveal": "always",
                 "panel": "shared",
@@ -99,6 +96,41 @@
                 "-NoProfile",
                 "-Command",
                 "Get-Process python -ErrorAction SilentlyContinue | Where-Object { $_.CommandLine -like '*embedding_server*' } | Stop-Process -Force"
+            ],
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared",
+                "group": "servers"
+            }
+        },
+        {
+            "label": "Start Rag Server",
+            "type": "shell",
+            "command": "pwsh",
+            "args": [
+                "-NoProfile",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "${workspaceFolder}/../rag-server-misc/start.ps1"
+            ],
+            "isBackground": true,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            }
+        },
+        {
+            "label": "Stop Rag Server",
+            "type": "shell",
+            "command": "pwsh",
+            "args": [
+                "-NoProfile",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "${workspaceFolder}/../rag-server-misc/stop.ps1"
             ],
             "isBackground": false,
             "presentation": {
@@ -193,7 +225,12 @@
                 "panel": "dedicated",
                 "clear": true
             },
-            "problemMatcher": []
+            "problemMatcher": [],
+            "dependsOn": [
+                "LLM: MCP Smoke Tests",
+                "LLM: Embedding Smoke Tests",
+                "LLM: RAG Smoke Tests"
+            ]
         },
         {
             "label": "LLM: RAG Smoke Tests",
