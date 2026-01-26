@@ -50,3 +50,25 @@ keyword_overrides:
 
 # Minimum keyword hits to pass
 min_keyword_hits: 1
+
+# RAG-First Architecture Configuration
+rag_first:
+  enabled: true
+  rag_url: "http://127.0.0.1:8002"
+  mcp_url: "http://127.0.0.1:8003"
+  
+  # Quality Gate Thresholds (based on ChatGPT analysis)
+  quality_gate:
+    min_results: 3
+    min_score: 0.75
+    max_score_gap: 0.15
+    freshness_days: 30
+  
+  # Test context sets for RAG-First
+  test_contexts:
+    - name: "@juce"
+      expected_collection: "juce-docs"
+      test_query: "AudioProcessor"
+    - name: "@vue"
+      expected_collection: "vue-docs"
+      test_query: "reactive"

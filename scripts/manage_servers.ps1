@@ -149,6 +149,7 @@ function Start-LlamaServer {
         # Start server in background with full configuration
         $null = Start-Process -FilePath $llamaPath -ArgumentList @(
             "--model", $llamaConfig.modelPath,
+            "--chat-template", $(if ($llamaConfig.chatTemplate) { $llamaConfig.chatTemplate } else { "chatml" }),
             "--port", $llamaConfig.port,
             "--ctx-size", $llamaConfig.ctxSize,
             "--batch-size", $llamaConfig.batchSize,

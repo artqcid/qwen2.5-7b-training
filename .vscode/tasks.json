@@ -294,6 +294,79 @@
                 "group": "test-rag"
             },
             "problemMatcher": []
+        },
+        {
+            "label": "LLM: RAG Quality Gate Tests",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-m",
+                "pytest",
+                "llm-test-suite/tests/rag/test_rag_quality_gate.py",
+                "-v",
+                "--color=yes",
+                "--tb=short"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true,
+                "group": "test-quality-gate"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "LLM: MCP RAG-First Tests",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-m",
+                "pytest",
+                "llm-test-suite/tests/mcp/test_mcp_rag_first.py",
+                "-v",
+                "--color=yes",
+                "--tb=short"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true,
+                "group": "test-rag-first"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "LLM: RAG-First Architecture Tests",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-m",
+                "pytest",
+                "llm-test-suite/tests/rag/test_rag_quality_gate.py",
+                "llm-test-suite/tests/mcp/test_mcp_rag_first.py",
+                "-v",
+                "--color=yes",
+                "--tb=short"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true,
+                "group": "test-rag-architecture"
+            },
+            "problemMatcher": []
         }
     ]
 }
