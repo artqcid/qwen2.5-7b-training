@@ -17,6 +17,39 @@
             "problemMatcher": []
         },
         {
+            "label": "RAG: Index ALL Contexts",
+            "dependsOn": [
+                "RAG: Index JUCE Docs",
+                "RAG: Index Vue Docs",
+                "RAG: Index React Docs",
+                "RAG: Index Angular Docs",
+                "RAG: Index Svelte Docs",
+                "RAG: Index DSP Docs",
+                "RAG: Index HTML Docs",
+                "RAG: Index CSS Docs",
+                "RAG: Index JavaScript Docs",
+                "RAG: Index JSON Docs",
+                "RAG: Index CMake Docs",
+                "RAG: Index Clang Docs",
+                "RAG: Index Ninja Docs",
+                "RAG: Index VS Code Docs",
+                "RAG: Index VST3 Docs",
+                "RAG: Index CLAP Docs",
+                "RAG: Index Audio Unit Docs",
+                "RAG: Index AAX Docs",
+                "RAG: Index ASIO Docs",
+                "RAG: Index PortAudio Docs",
+                "RAG: Index iPlug2 Docs",
+                "RAG: Index WebView2 Docs"
+            ],
+            "dependsOrder": "sequence",
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": []
+        },
+        {
             "label": "Stop All Servers",
             "dependsOn": [
                 "Stop Llama.cpp Server",
