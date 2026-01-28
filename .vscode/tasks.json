@@ -466,7 +466,9 @@
                 "-m",
                 "rag_server.indexing.cli",
                 "index",
+                "-c",
                 "juce",
+                "--all-tiers",
                 "--rag-url",
                 "http://127.0.0.1:8002"
             ],
@@ -491,7 +493,9 @@
                 "-m",
                 "rag_server.indexing.cli",
                 "index",
+                "-c",
                 "vue",
+                "--all-tiers",
                 "--rag-url",
                 "http://127.0.0.1:8002"
             ],
@@ -516,7 +520,9 @@
                 "-m",
                 "rag_server.indexing.cli",
                 "index",
+                "-c",
                 "react",
+                "--all-tiers",
                 "--rag-url",
                 "http://127.0.0.1:8002"
             ],
@@ -541,7 +547,9 @@
                 "-m",
                 "rag_server.indexing.cli",
                 "index",
+                "-c",
                 "angular",
+                "--all-tiers",
                 "--rag-url",
                 "http://127.0.0.1:8002"
             ],
@@ -566,7 +574,9 @@
                 "-m",
                 "rag_server.indexing.cli",
                 "index",
+                "-c",
                 "svelte",
+                "--all-tiers",
                 "--rag-url",
                 "http://127.0.0.1:8002"
             ],
@@ -591,7 +601,9 @@
                 "-m",
                 "rag_server.indexing.cli",
                 "index",
+                "-c",
                 "dsp",
+                "--all-tiers",
                 "--rag-url",
                 "http://127.0.0.1:8002"
             ],
@@ -616,7 +628,9 @@
                 "-m",
                 "rag_server.indexing.cli",
                 "index",
+                "-c",
                 "html",
+                "--all-tiers",
                 "--rag-url",
                 "http://127.0.0.1:8002"
             ],
@@ -641,7 +655,9 @@
                 "-m",
                 "rag_server.indexing.cli",
                 "index",
+                "-c",
                 "css",
+                "--all-tiers",
                 "--rag-url",
                 "http://127.0.0.1:8002"
             ],
@@ -666,7 +682,9 @@
                 "-m",
                 "rag_server.indexing.cli",
                 "index",
+                "-c",
                 "js",
+                "--all-tiers",
                 "--rag-url",
                 "http://127.0.0.1:8002"
             ],
@@ -691,7 +709,9 @@
                 "-m",
                 "rag_server.indexing.cli",
                 "index",
+                "-c",
                 "json",
+                "--all-tiers",
                 "--rag-url",
                 "http://127.0.0.1:8002"
             ],
@@ -716,7 +736,9 @@
                 "-m",
                 "rag_server.indexing.cli",
                 "index",
+                "-c",
                 "cmake",
+                "--all-tiers",
                 "--rag-url",
                 "http://127.0.0.1:8002"
             ],
@@ -741,7 +763,9 @@
                 "-m",
                 "rag_server.indexing.cli",
                 "index",
+                "-c",
                 "clang",
+                "--all-tiers",
                 "--rag-url",
                 "http://127.0.0.1:8002"
             ],
@@ -766,7 +790,9 @@
                 "-m",
                 "rag_server.indexing.cli",
                 "index",
+                "-c",
                 "ninja",
+                "--all-tiers",
                 "--rag-url",
                 "http://127.0.0.1:8002"
             ],
@@ -791,7 +817,9 @@
                 "-m",
                 "rag_server.indexing.cli",
                 "index",
+                "-c",
                 "vscode",
+                "--all-tiers",
                 "--rag-url",
                 "http://127.0.0.1:8002"
             ],
@@ -816,7 +844,9 @@
                 "-m",
                 "rag_server.indexing.cli",
                 "index",
+                "-c",
                 "vst",
+                "--all-tiers",
                 "--rag-url",
                 "http://127.0.0.1:8002"
             ],
@@ -841,7 +871,9 @@
                 "-m",
                 "rag_server.indexing.cli",
                 "index",
+                "-c",
                 "clap",
+                "--all-tiers",
                 "--rag-url",
                 "http://127.0.0.1:8002"
             ],
@@ -866,7 +898,9 @@
                 "-m",
                 "rag_server.indexing.cli",
                 "index",
+                "-c",
                 "au",
+                "--all-tiers",
                 "--rag-url",
                 "http://127.0.0.1:8002"
             ],
@@ -891,7 +925,9 @@
                 "-m",
                 "rag_server.indexing.cli",
                 "index",
+                "-c",
                 "aax",
+                "--all-tiers",
                 "--rag-url",
                 "http://127.0.0.1:8002"
             ],
@@ -916,7 +952,9 @@
                 "-m",
                 "rag_server.indexing.cli",
                 "index",
+                "-c",
                 "webview2",
+                "--all-tiers",
                 "--rag-url",
                 "http://127.0.0.1:8002"
             ],
@@ -941,7 +979,9 @@
                 "-m",
                 "rag_server.indexing.cli",
                 "index",
+                "-c",
                 "asio",
+                "--all-tiers",
                 "--rag-url",
                 "http://127.0.0.1:8002"
             ],
@@ -966,7 +1006,9 @@
                 "-m",
                 "rag_server.indexing.cli",
                 "index",
+                "-c",
                 "portaudio",
+                "--all-tiers",
                 "--rag-url",
                 "http://127.0.0.1:8002"
             ],
@@ -991,7 +1033,9 @@
                 "-m",
                 "rag_server.indexing.cli",
                 "index",
+                "-c",
                 "iplug2",
+                "--all-tiers",
                 "--rag-url",
                 "http://127.0.0.1:8002"
             ],
