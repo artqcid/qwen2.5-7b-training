@@ -37,7 +37,11 @@
 		"python.linting.enabled": true,
 		"python.linting.pylintEnabled": true,
 		"mcpAutoStarter.enabled": false,
-		"powershell.cwd": "qwen2.5-7b-training"
+		"powershell.cwd": "qwen2.5-7b-training",
+		"taskexplorer.groupWithSeparator": true,
+		"taskexplorer.groupSeparator": "-",
+		"taskexplorer.groupSeparatorEx": "::",
+		"taskexplorer.groupScripts": true
 	},
 	"launch": {
 		"version": "0.2.0",

@@ -10,8 +10,7 @@
                 "Server: Start MCP"
             ],
             "dependsOrder": "parallel",
-            "group": "Server",
-            "problemMatcher": []
+            "group": "Server"
         },
         {
             "label": "RAG: Index ALL Contexts",
@@ -40,8 +39,7 @@
                 "RAG: Index WebView2 Docs"
             ],
             "dependsOrder": "sequence",
-            "group": "RAG",
-            "problemMatcher": []
+            "group": "RAG"
         },
         {
             "label": "Server: Stop All",
@@ -52,8 +50,7 @@
                 "Server: Stop MCP"
             ],
             "dependsOrder": "parallel",
-            "group": "Server",
-            "problemMatcher": []
+            "group": "Server"
         },
         {
             "label": "Server: Start Llama.cpp",
@@ -89,8 +86,7 @@
             "group": "Server",
             "presentation": {
                 "reveal": "always",
-                "panel": "dedicated",
-                "group": "llama-stop"
+                "panel": "shared"
             }
         },
         {
@@ -127,8 +123,7 @@
             "group": "Server",
             "presentation": {
                 "reveal": "always",
-                "panel": "dedicated",
-                "group": "embedding-stop"
+                "panel": "shared"
             }
         },
         {
@@ -165,8 +160,7 @@
             "group": "Server",
             "presentation": {
                 "reveal": "always",
-                "panel": "dedicated",
-                "group": "rag-stop"
+                "panel": "shared"
             }
         },
         {
@@ -203,8 +197,7 @@
             "group": "Server",
             "presentation": {
                 "reveal": "always",
-                "panel": "dedicated",
-                "group": "mcp-stop"
+                "panel": "shared"
             }
         },
         {
@@ -220,10 +213,8 @@
             "group": "Server",
             "presentation": {
                 "reveal": "always",
-                "panel": "dedicated",
-                "group": "status"
-            },
-            "problemMatcher": []
+                "panel": "shared"
+            }
         },
         {
             "label": "LLM: MCP Smoke Tests",
@@ -247,8 +238,7 @@
                 "panel": "dedicated",
                 "clear": true,
                 "group": "test-mcp"
-            },
-            "problemMatcher": []
+            }
         },
         {
             "label": "LLM: Embedding Smoke Tests",
@@ -272,8 +262,7 @@
                 "panel": "dedicated",
                 "clear": true,
                 "group": "test-embedding"
-            },
-            "problemMatcher": []
+            }
         },
         {
             "label": "LLM: ALL Smoke Tests",
@@ -300,7 +289,6 @@
                 "clear": true,
                 "group": "test-all-smoke"
             },
-            "problemMatcher": [],
             "dependsOn": [
                 "LLM: MCP Smoke Tests",
                 "LLM: Embedding Smoke Tests",
@@ -329,8 +317,7 @@
                 "panel": "dedicated",
                 "clear": true,
                 "group": "test-all"
-            },
-            "problemMatcher": []
+            }
         },
         {
             "label": "LLM: RAG Smoke Tests",
@@ -354,8 +341,7 @@
                 "panel": "dedicated",
                 "clear": true,
                 "group": "test-rag"
-            },
-            "problemMatcher": []
+            }
         },
         {
             "label": "LLM: RAG Quality Gate Tests",
@@ -379,8 +365,7 @@
                 "panel": "dedicated",
                 "clear": true,
                 "group": "test-quality-gate"
-            },
-            "problemMatcher": []
+            }
         },
         {
             "label": "LLM: MCP RAG-First Tests",
@@ -404,8 +389,7 @@
                 "panel": "dedicated",
                 "clear": true,
                 "group": "test-rag-first"
-            },
-            "problemMatcher": []
+            }
         },
         {
             "label": "LLM: RAG-First Architecture Tests",
@@ -430,8 +414,7 @@
                 "panel": "dedicated",
                 "clear": true,
                 "group": "test-rag-architecture"
-            },
-            "problemMatcher": []
+            }
         },
         {
             "label": "LLM: RAG Hybrid Search Tests",
@@ -455,8 +438,7 @@
                 "panel": "dedicated",
                 "clear": true,
                 "group": "test-hybrid"
-            },
-            "problemMatcher": []
+            }
         },
         {
             "label": "RAG: Index JUCE Docs",
@@ -482,8 +464,7 @@
                 "panel": "dedicated",
                 "clear": true,
                 "group": "indexing"
-            },
-            "problemMatcher": []
+            }
         },
         {
             "label": "RAG: Index Vue Docs",
@@ -509,8 +490,7 @@
                 "panel": "dedicated",
                 "clear": true,
                 "group": "indexing"
-            },
-            "problemMatcher": []
+            }
         },
         {
             "label": "RAG: Index React Docs",
@@ -536,8 +516,7 @@
                 "panel": "dedicated",
                 "clear": true,
                 "group": "indexing"
-            },
-            "problemMatcher": []
+            }
         },
         {
             "label": "RAG: Index Angular Docs",
@@ -563,8 +542,7 @@
                 "panel": "dedicated",
                 "clear": true,
                 "group": "indexing"
-            },
-            "problemMatcher": []
+            }
         },
         {
             "label": "RAG: Index Svelte Docs",
@@ -590,8 +568,7 @@
                 "panel": "dedicated",
                 "clear": true,
                 "group": "indexing"
-            },
-            "problemMatcher": []
+            }
         },
         {
             "label": "RAG: Index DSP Docs",
@@ -617,8 +594,7 @@
                 "panel": "dedicated",
                 "clear": true,
                 "group": "indexing"
-            },
-            "problemMatcher": []
+            }
         },
         {
             "label": "RAG: Index HTML Docs",
@@ -644,8 +620,7 @@
                 "panel": "dedicated",
                 "clear": true,
                 "group": "indexing"
-            },
-            "problemMatcher": []
+            }
         },
         {
             "label": "RAG: Index CSS Docs",
@@ -671,8 +646,7 @@
                 "panel": "dedicated",
                 "clear": true,
                 "group": "indexing"
-            },
-            "problemMatcher": []
+            }
         },
         {
             "label": "RAG: Index JavaScript Docs",
@@ -698,8 +672,7 @@
                 "panel": "dedicated",
                 "clear": true,
                 "group": "indexing"
-            },
-            "problemMatcher": []
+            }
         },
         {
             "label": "RAG: Index JSON Docs",
@@ -725,8 +698,7 @@
                 "panel": "dedicated",
                 "clear": true,
                 "group": "indexing"
-            },
-            "problemMatcher": []
+            }
         },
         {
             "label": "RAG: Index CMake Docs",
@@ -752,8 +724,7 @@
                 "panel": "dedicated",
                 "clear": true,
                 "group": "indexing"
-            },
-            "problemMatcher": []
+            }
         },
         {
             "label": "RAG: Index Clang Docs",
@@ -779,8 +750,7 @@
                 "panel": "dedicated",
                 "clear": true,
                 "group": "indexing"
-            },
-            "problemMatcher": []
+            }
         },
         {
             "label": "RAG: Index Ninja Docs",
@@ -806,8 +776,7 @@
                 "panel": "dedicated",
                 "clear": true,
                 "group": "indexing"
-            },
-            "problemMatcher": []
+            }
         },
         {
             "label": "RAG: Index VS Code Docs",
@@ -833,8 +802,7 @@
                 "panel": "dedicated",
                 "clear": true,
                 "group": "indexing"
-            },
-            "problemMatcher": []
+            }
         },
         {
             "label": "RAG: Index VST3 Docs",
@@ -860,8 +828,7 @@
                 "panel": "dedicated",
                 "clear": true,
                 "group": "indexing"
-            },
-            "problemMatcher": []
+            }
         },
         {
             "label": "RAG: Index CLAP Docs",
@@ -887,8 +854,7 @@
                 "panel": "dedicated",
                 "clear": true,
                 "group": "indexing"
-            },
-            "problemMatcher": []
+            }
         },
         {
             "label": "RAG: Index Audio Unit Docs",
@@ -914,8 +880,7 @@
                 "panel": "dedicated",
                 "clear": true,
                 "group": "indexing"
-            },
-            "problemMatcher": []
+            }
         },
         {
             "label": "RAG: Index AAX Docs",
@@ -941,8 +906,7 @@
                 "panel": "dedicated",
                 "clear": true,
                 "group": "indexing"
-            },
-            "problemMatcher": []
+            }
         },
         {
             "label": "RAG: Index WebView2 Docs",
@@ -968,8 +932,7 @@
                 "panel": "dedicated",
                 "clear": true,
                 "group": "indexing"
-            },
-            "problemMatcher": []
+            }
         },
         {
             "label": "RAG: Index ASIO Docs",
@@ -995,8 +958,7 @@
                 "panel": "dedicated",
                 "clear": true,
                 "group": "indexing"
-            },
-            "problemMatcher": []
+            }
         },
         {
             "label": "RAG: Index PortAudio Docs",
@@ -1022,8 +984,7 @@
                 "panel": "dedicated",
                 "clear": true,
                 "group": "indexing"
-            },
-            "problemMatcher": []
+            }
         },
         {
             "label": "RAG: Index iPlug2 Docs",
@@ -1049,17 +1010,18 @@
                 "panel": "dedicated",
                 "clear": true,
                 "group": "indexing"
-            },
-            "problemMatcher": []
+            }
         },
         {
             "label": "RAG: Verify All Context URLs",
             "type": "shell",
-            "command": "python",
+            "command": "pwsh",
             "args": [
-                "-m",
-                "rag_server.indexing.cli",
-                "verify"
+                "-NoProfile",
+                "-ExecutionPolicy",
+                "Bypass",
+                "-File",
+                "${workspaceFolder}/../rag-server-misc/verify_all_contexts.ps1"
             ],
             "options": {
                 "cwd": "${workspaceFolder}/../rag-server-misc"
@@ -1071,8 +1033,7 @@
                 "panel": "dedicated",
                 "clear": true,
                 "group": "indexing"
-            },
-            "problemMatcher": []
+            }
         },
         {
             "label": "RAG: List All Contexts",
@@ -1093,8 +1054,7 @@
                 "panel": "dedicated",
                 "clear": true,
                 "group": "indexing"
-            },
-            "problemMatcher": []
+            }
         }
     ]
 }
