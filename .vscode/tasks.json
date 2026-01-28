@@ -391,6 +391,600 @@
                 "group": "test-rag-architecture"
             },
             "problemMatcher": []
+        },
+        {
+            "label": "LLM: RAG Hybrid Search Tests",
+            "type": "shell",
+            "command": "C:/Users/marku/Documents/GitHub/artqcid/ai-projects/qwen2.5-7b-training/.venv/Scripts/python.exe",
+            "args": [
+                "-m",
+                "pytest",
+                "llm-test-suite/tests/rag/test_hybrid_search.py",
+                "-v",
+                "--color=yes",
+                "--tb=short"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true,
+                "group": "test-hybrid"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "RAG: Index JUCE Docs",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-m",
+                "rag_server.indexing.cli",
+                "index",
+                "juce",
+                "--rag-url",
+                "http://127.0.0.1:8002"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/../rag-server-misc"
+            },
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true,
+                "group": "indexing"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "RAG: Index Vue Docs",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-m",
+                "rag_server.indexing.cli",
+                "index",
+                "vue",
+                "--rag-url",
+                "http://127.0.0.1:8002"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/../rag-server-misc"
+            },
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true,
+                "group": "indexing"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "RAG: Index React Docs",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-m",
+                "rag_server.indexing.cli",
+                "index",
+                "react",
+                "--rag-url",
+                "http://127.0.0.1:8002"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/../rag-server-misc"
+            },
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true,
+                "group": "indexing"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "RAG: Index Angular Docs",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-m",
+                "rag_server.indexing.cli",
+                "index",
+                "angular",
+                "--rag-url",
+                "http://127.0.0.1:8002"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/../rag-server-misc"
+            },
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true,
+                "group": "indexing"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "RAG: Index Svelte Docs",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-m",
+                "rag_server.indexing.cli",
+                "index",
+                "svelte",
+                "--rag-url",
+                "http://127.0.0.1:8002"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/../rag-server-misc"
+            },
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true,
+                "group": "indexing"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "RAG: Index DSP Docs",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-m",
+                "rag_server.indexing.cli",
+                "index",
+                "dsp",
+                "--rag-url",
+                "http://127.0.0.1:8002"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/../rag-server-misc"
+            },
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true,
+                "group": "indexing"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "RAG: Index HTML Docs",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-m",
+                "rag_server.indexing.cli",
+                "index",
+                "html",
+                "--rag-url",
+                "http://127.0.0.1:8002"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/../rag-server-misc"
+            },
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true,
+                "group": "indexing"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "RAG: Index CSS Docs",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-m",
+                "rag_server.indexing.cli",
+                "index",
+                "css",
+                "--rag-url",
+                "http://127.0.0.1:8002"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/../rag-server-misc"
+            },
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true,
+                "group": "indexing"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "RAG: Index JavaScript Docs",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-m",
+                "rag_server.indexing.cli",
+                "index",
+                "js",
+                "--rag-url",
+                "http://127.0.0.1:8002"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/../rag-server-misc"
+            },
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true,
+                "group": "indexing"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "RAG: Index JSON Docs",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-m",
+                "rag_server.indexing.cli",
+                "index",
+                "json",
+                "--rag-url",
+                "http://127.0.0.1:8002"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/../rag-server-misc"
+            },
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true,
+                "group": "indexing"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "RAG: Index CMake Docs",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-m",
+                "rag_server.indexing.cli",
+                "index",
+                "cmake",
+                "--rag-url",
+                "http://127.0.0.1:8002"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/../rag-server-misc"
+            },
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true,
+                "group": "indexing"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "RAG: Index Clang Docs",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-m",
+                "rag_server.indexing.cli",
+                "index",
+                "clang",
+                "--rag-url",
+                "http://127.0.0.1:8002"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/../rag-server-misc"
+            },
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true,
+                "group": "indexing"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "RAG: Index Ninja Docs",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-m",
+                "rag_server.indexing.cli",
+                "index",
+                "ninja",
+                "--rag-url",
+                "http://127.0.0.1:8002"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/../rag-server-misc"
+            },
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true,
+                "group": "indexing"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "RAG: Index VS Code Docs",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-m",
+                "rag_server.indexing.cli",
+                "index",
+                "vscode",
+                "--rag-url",
+                "http://127.0.0.1:8002"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/../rag-server-misc"
+            },
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true,
+                "group": "indexing"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "RAG: Index VST3 Docs",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-m",
+                "rag_server.indexing.cli",
+                "index",
+                "vst",
+                "--rag-url",
+                "http://127.0.0.1:8002"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/../rag-server-misc"
+            },
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true,
+                "group": "indexing"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "RAG: Index CLAP Docs",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-m",
+                "rag_server.indexing.cli",
+                "index",
+                "clap",
+                "--rag-url",
+                "http://127.0.0.1:8002"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/../rag-server-misc"
+            },
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true,
+                "group": "indexing"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "RAG: Index Audio Unit Docs",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-m",
+                "rag_server.indexing.cli",
+                "index",
+                "au",
+                "--rag-url",
+                "http://127.0.0.1:8002"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/../rag-server-misc"
+            },
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true,
+                "group": "indexing"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "RAG: Index AAX Docs",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-m",
+                "rag_server.indexing.cli",
+                "index",
+                "aax",
+                "--rag-url",
+                "http://127.0.0.1:8002"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/../rag-server-misc"
+            },
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true,
+                "group": "indexing"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "RAG: Index WebView2 Docs",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-m",
+                "rag_server.indexing.cli",
+                "index",
+                "webview2",
+                "--rag-url",
+                "http://127.0.0.1:8002"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/../rag-server-misc"
+            },
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true,
+                "group": "indexing"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "RAG: Index ASIO Docs",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-m",
+                "rag_server.indexing.cli",
+                "index",
+                "asio",
+                "--rag-url",
+                "http://127.0.0.1:8002"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/../rag-server-misc"
+            },
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true,
+                "group": "indexing"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "RAG: Index PortAudio Docs",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-m",
+                "rag_server.indexing.cli",
+                "index",
+                "portaudio",
+                "--rag-url",
+                "http://127.0.0.1:8002"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/../rag-server-misc"
+            },
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true,
+                "group": "indexing"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "RAG: Index iPlug2 Docs",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-m",
+                "rag_server.indexing.cli",
+                "index",
+                "iplug2",
+                "--rag-url",
+                "http://127.0.0.1:8002"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/../rag-server-misc"
+            },
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true,
+                "group": "indexing"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "RAG: Verify All Context URLs",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-m",
+                "rag_server.indexing.cli",
+                "verify"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/../rag-server-misc"
+            },
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true,
+                "group": "indexing"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "RAG: List All Contexts",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-m",
+                "rag_server.indexing.cli",
+                "list-contexts"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/../rag-server-misc"
+            },
+            "isBackground": false,
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "clear": true,
+                "group": "indexing"
+            },
+            "problemMatcher": []
         }
     ]
 }

@@ -100,6 +100,53 @@ Any training-specific integrations belong in this project:
 - Future: RAG integration in training pipeline
 - Future: Model evaluation with embeddings
 
+## LLM Test Suite
+
+The project includes comprehensive tests for all LLM-related services.
+
+### VS Code Tasks
+
+| Task Name | Description |
+|-----------|-------------|
+| `LLM: ALL Tests` | Run all LLM tests (MCP, Embedding, RAG, Hybrid) |
+| `LLM: ALL Smoke Tests` | Quick smoke tests for basic functionality |
+| `LLM: MCP Smoke Tests` | MCP server functionality tests |
+| `LLM: Embedding Smoke Tests` | Embedding server tests |
+| `LLM: RAG Smoke Tests` | RAG indexing, search, and query tests |
+| `LLM: RAG Quality Gate Tests` | RAG quality threshold tests |
+| `LLM: RAG Hybrid Search Tests` | Dense vs Hybrid search comparison |
+| `LLM: MCP RAG-First Tests` | MCP with RAG context tests |
+| `LLM: RAG-First Architecture Tests` | Combined RAG quality + MCP tests |
+
+### Running Tests
+
+```powershell
+# Run all tests via VS Code Task
+# Ctrl+Shift+P -> Tasks: Run Task -> LLM: ALL Tests
+
+# Or via command line
+python -m pytest llm-test-suite/tests/ -v --tb=short
+```
+
+### Test Structure
+
+```
+llm-test-suite/
+├── tests/
+│   ├── mcp/
+│   │   ├── test_mcp_smoke.py       # Basic MCP functionality
+│   │   └── test_mcp_rag_first.py   # MCP with RAG context
+│   ├── embedding/
+│   │   └── test_embedding_smoke.py # Embedding server tests
+│   └── rag/
+│       ├── test_rag_smoke.py       # Basic RAG operations
+│       ├── test_rag_quality_gate.py # Quality thresholds
+│       └── test_hybrid_search.py   # Dense vs Hybrid comparison
+├── config/
+│   └── rag_smoke_config.yaml       # Test configuration
+└── rag_client.py                   # RAG server client
+```
+
 ### Working with Submodules
 
 ```bash
