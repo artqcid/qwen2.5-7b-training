@@ -27,6 +27,9 @@
 		},
 		{
 			"path": "../../misc-projects/vscode-extension/vscode-autostart-extension"
+		},
+		{
+			"path": "../../../thirdParty/.vscode"
 		}
 	],
 	"settings": {

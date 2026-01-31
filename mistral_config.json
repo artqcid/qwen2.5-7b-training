@@ -1,7 +1,7 @@
 {
   "llama_cpp": {
     "llamaCppPath": "C:/llama/llama-server.exe",
-    "modelPath": "D:/AI-Models/llama/qwen/Qwen2.5-Coder-7B-Q4_K_M.gguf",
+    "modelPath": "D:/AI-Models/llama/mistral/mistral-7b-instruct-v0.2.Q4_K_M.gguf",
     "chatTemplate": "chatml",
     "port": 8081,
     "ctxSize": 16384,
@@ -9,15 +9,15 @@
     "ubatchSize": 64,
     "parallel": 1,
     "threads": 6,
-    "gpuLayers": 25,
+    "gpuLayers": 20,
     "cacheK": "q8_0",
-    "cacheV": "f16",
+    "cacheV": "q8_0", 
     "nPredict": 2048,
     "temp": 0.5,
     "topK": 40,
     "topP": 0.9,
     "repeatPen": 1.08,
     "mirostat": 0,
-    "flashAttn": "auto"
+    "flashAttn": 0
   }
 }
