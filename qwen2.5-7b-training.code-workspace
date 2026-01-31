@@ -30,6 +30,9 @@
 		},
 		{
 			"path": "../../../thirdParty/.vscode"
+		},
+		{
+			"path": "../agent-chat-misc"
 		}
 	],
 	"settings": {
